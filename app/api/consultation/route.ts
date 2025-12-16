@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { inference, validateStructuredOutput } from "@/lib/ai";
+import { sendConsultationEmail } from "@/lib/email";
 import { z } from "zod";
 
 /**
@@ -152,6 +153,16 @@ This analysis helps serious founders make better decisions.`;
       );
     }
 
+    // Send email notification to admin
+    const fileName = file?.name || undefined;
+    await sendConsultationEmail({
+      plan: plan.substring(0, 1000), // Truncate for email
+      fileName,
+      complexity: analysis.estimatedComplexity,
+      fundingEstimate: analysis.fundingEstimate,
+      timeline: analysis.timeline,
+    });
+
     return NextResponse.json({
       success: true,
       analysis,
@@ -162,6 +173,7 @@ This analysis helps serious founders make better decisions.`;
         estimatedCost: `$${aiResponse.cost.toFixed(4)}`,
         latencyMs: aiResponse.latencyMs,
       },
+      emailSent: true,
     });
   } catch (error) {
     console.error("Consultation API error:", error);

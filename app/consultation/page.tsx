@@ -25,6 +25,7 @@ interface ConsultationResponse {
     estimatedCost: string;
     latencyMs: number;
   };
+  emailSent?: boolean;
   error?: string;
 }
 
@@ -408,6 +409,19 @@ export default function Consultation() {
               </ol>
             </div>
 
+            {/* Email Confirmation */}
+            {response?.emailSent && (
+              <div className="border border-green-700 rounded-lg p-6 bg-green-900/20 mb-8">
+                <h3 className="text-lg font-mono font-bold text-green-400 mb-2">
+                  ✓ Consultation Submitted
+                </h3>
+                <p className="text-slate-300 text-sm">
+                  We've received your plan and sent you a confirmation email.
+                  Our team will review and reach out within 24 hours.
+                </p>
+              </div>
+            )}
+
             {/* CTA */}
             <div className="border-2 border-blue-500 rounded-lg p-12 bg-blue-900/20">
               <h2 className="text-2xl font-mono font-bold mb-4">
@@ -426,7 +440,7 @@ export default function Consultation() {
                   Analyze Another Plan
                 </button>
                 <a
-                  href="mailto:hello@code3black.ai?subject=AI Project Consultation - Ready to Build"
+                  href="mailto:cod3blackagency@gmail.com?subject=AI Project Consultation - Ready to Build"
                   className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded font-mono transition"
                 >
                   Schedule Discussion
