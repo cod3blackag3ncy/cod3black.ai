@@ -211,8 +211,10 @@ npm run start
 
 1. Push to GitHub
 2. Import project in Vercel dashboard
-3. Add environment variables in Vercel settings
+3. Add environment variables in Vercel settings (see DEPLOYMENT_GUIDE.md)
 4. Deploy
+
+**See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for complete deployment instructions, environment variable setup, and troubleshooting.**
 
 ## Why This Architecture
 
