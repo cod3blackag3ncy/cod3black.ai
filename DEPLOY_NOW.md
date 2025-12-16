@@ -26,6 +26,8 @@ git push origin main
 
 #### Step 3: Add Environment Variables
 
+**In Vercel Dashboard: Settings → Environment Variables**
+
 **Choose ONE AI Provider:**
 
 **OpenAI (Recommended for Production):**

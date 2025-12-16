@@ -4,40 +4,32 @@
   "framework": "nextjs",
   "env": {
     "NEXT_PUBLIC_AI_PROVIDER": {
-      "description": "AI provider: openai, anthropic, or gemini",
-      "type": "string",
-      "default": "openai"
+      "description": "AI provider to use",
+      "required": false
     },
     "NEXT_PUBLIC_AI_MODEL": {
-      "description": "Model name (e.g., gpt-4-turbo)",
-      "type": "string",
-      "default": "gpt-4-turbo"
+      "description": "AI model name",
+      "required": false
     },
     "OPENAI_API_KEY": {
-      "description": "OpenAI API key (if using OpenAI provider)",
-      "type": "string"
+      "description": "OpenAI API key",
+      "required": false
     },
     "ANTHROPIC_API_KEY": {
-      "description": "Anthropic API key (if using Anthropic provider)",
-      "type": "string"
+      "description": "Anthropic API key",
+      "required": false
     },
     "GOOGLE_API_KEY": {
-      "description": "Google API key (if using Gemini provider)",
-      "type": "string"
+      "description": "Google API key",
+      "required": false
     },
     "GMAIL_EMAIL": {
-      "description": "Gmail address for consultation notifications",
-      "type": "string"
+      "description": "Gmail email for notifications",
+      "required": false
     },
     "GMAIL_APP_PASSWORD": {
-      "description": "Gmail app-specific password for SMTP",
-      "type": "string"
+      "description": "Gmail app password",
+      "required": false
     }
-  },
-  "git": {
-    "deploymentEnabled": {
-      "main": true
-    }
-  },
-  "crons": []
+  }
 }
