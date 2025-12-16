@@ -38,6 +38,9 @@ export default function RootLayout({
                 <a href="/demo" className="hover:text-blue-400 transition">
                   Demo
                 </a>
+                <a href="/consultation" className="hover:text-blue-400 transition">
+                  Consultation
+                </a>
               </div>
             </div>
           </nav>

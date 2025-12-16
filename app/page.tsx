@@ -13,7 +13,7 @@ export default function Home() {
           Not marketing AI. Not toy demos. Systems that consume real compute,
           handle real constraints, and solve real problems at scale.
         </p>
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           <Link
             href="/demo"
             className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded font-mono transition"
@@ -25,6 +25,12 @@ export default function Home() {
             className="px-6 py-3 border border-slate-600 hover:border-slate-400 rounded font-mono transition"
           >
             View Projects
+          </Link>
+          <Link
+            href="/consultation"
+            className="px-6 py-3 border border-blue-600 hover:border-blue-400 text-blue-400 rounded font-mono transition"
+          >
+            Free Consultation
           </Link>
         </div>
       </div>
@@ -89,7 +95,25 @@ export default function Home() {
         </ul>
       </div>
 
-      {/* CTA */}
+      {/* Consultation CTA */}
+      <div className="mb-24 bg-blue-900/20 border border-blue-700 rounded-lg p-12">
+        <h2 className="text-2xl font-mono font-bold mb-6">
+          Have a Project You Want to Build?
+        </h2>
+        <p className="text-slate-300 max-w-2xl mb-8">
+          Submit your plan for free AI analysis. We'll assess feasibility, AI
+          integration opportunities, complexity, and realistic investment needed.
+          Perfect for founders and CTOs evaluating their next move.
+        </p>
+        <Link
+          href="/consultation"
+          className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded font-mono transition"
+        >
+          Get Free Analysis
+        </Link>
+      </div>
+
+      {/* Live Demo CTA */}
       <div className="text-center">
         <h2 className="text-2xl font-mono font-bold mb-6">
           Ready to see what production AI looks like?
