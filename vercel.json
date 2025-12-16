@@ -1,0 +1,22 @@
+{
+  "buildCommand": "next build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "env": {
+    "NEXT_PUBLIC_AI_PROVIDER": {
+      "description": "AI provider: openai, anthropic, or gemini"
+    },
+    "NEXT_PUBLIC_AI_MODEL": {
+      "description": "Model name (e.g., gpt-4-turbo)"
+    },
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API key (if using OpenAI provider)"
+    },
+    "ANTHROPIC_API_KEY": {
+      "description": "Anthropic API key (if using Anthropic provider)"
+    },
+    "GOOGLE_API_KEY": {
+      "description": "Google API key (if using Gemini provider)"
+    }
+  }
+}

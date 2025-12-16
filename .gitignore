@@ -1,0 +1,16 @@
+node_modules/
+.next/
+out/
+dist/
+build/
+.env
+.env.local
+.env.*.local
+.DS_Store
+*.log
+*.md.bak
+coverage/
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
