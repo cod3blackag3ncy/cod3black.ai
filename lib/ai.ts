@@ -32,9 +32,14 @@ export interface AIInferenceResponse {
  * Get the default provider from env or fallback to openai
  */
 export function getDefaultProvider(): AIProvider {
-  const provider =
-    (process.env.NEXT_PUBLIC_AI_PROVIDER as AIProvider) || "openai";
-  return provider;
+  const provider = process.env.NEXT_PUBLIC_AI_PROVIDER || "openai";
+  if (!["openai", "anthropic", "gemini"].includes(provider)) {
+    console.warn(
+      `Invalid provider: ${provider}. Defaulting to openai.`
+    );
+    return "openai";
+  }
+  return provider as AIProvider;
 }
 
 /**

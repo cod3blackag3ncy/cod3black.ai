@@ -14,17 +14,21 @@ Not a tutorial. Not a toy. A credible showcase for investors and partners.
 
 ## The Quick Version (5 minutes)
 
-1. **Clone & Install**
+1. **Install & Configure**
    ```bash
    npm install
    cp .env.example .env.local
    ```
 
-2. **Add Your API Key**
+2. **Add Your API Key to `.env.local`**
    ```bash
-   # Edit .env.local and add:
-   OPENAI_API_KEY=sk_your_key_here
+   # Edit .env.local and make sure these lines exist:
+   NEXT_PUBLIC_AI_PROVIDER=openai
+   NEXT_PUBLIC_AI_MODEL=gpt-4-turbo
+   OPENAI_API_KEY=sk_your_actual_key_here
    ```
+   
+   ⚠️ **Important:** Replace `sk_your_actual_key_here` with your real key from https://platform.openai.com/api-keys
 
 3. **Run Locally**
    ```bash
@@ -43,6 +47,8 @@ Not a tutorial. Not a toy. A credible showcase for investors and partners.
    ```
 
 Done.
+
+**Troubleshooting:** If you get "AI API not configured" error, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
 
 ## The Important Pages
 
