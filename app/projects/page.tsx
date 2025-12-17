@@ -2,6 +2,7 @@ export default function Projects() {
   const projects = [
     {
       name: "PaparizeMe",
+      url: "https://paparize.me",
       tagline: "Creator-brand AI platform",
       description:
         "Multimodal content analysis and generation for influencers and creators. Analyzes brand voice, generates captions, suggests posting times, detects content trends.",
@@ -22,46 +23,48 @@ export default function Projects() {
       statusColor: "bg-green-900 border-green-700",
     },
     {
-      name: "IRS Advocate AI",
-      tagline: "Document generation and compliance",
+      name: "Taste of Gratitude",
+      url: "https://tasteofgratitude.shop",
+      tagline: "E-commerce platform",
       description:
-        "Generates compliant IRS letters and documents. Extracts data from user forms, validates against IRS requirements, outputs audit-ready documents.",
+        "Full-featured e-commerce shop with product management, shopping cart, checkout flow, and order processing. Clean, conversion-optimized design with seamless user experience.",
       aiUsage: [
-        "Document OCR and field extraction",
-        "Deterministic prompt-based document generation",
-        "Compliance validation against IRS rules",
-        "Audit trail generation for every letter",
+        "Product recommendation engine",
+        "Inventory optimization algorithms",
+        "Customer behavior analytics",
+        "Automated email marketing flows",
       ],
       architecture: {
-        input: "PDF scan or web form input",
+        input: "Customer browsing and purchase data",
         processing:
-          "OCR/parsing → schema validation → prompt → generate document → compliance check",
-        output: "PDF-ready letter, audit log, compliance score",
+          "Data collection → ML analysis → personalization → targeted recommendations",
+        output: "Personalized shopping experience, optimized inventory, increased conversions",
       },
-      metrics: "500+ documents generated, 100% compliance rate, zero rejections",
+      metrics: "Live storefront, optimized checkout, mobile-responsive",
       status: "Production",
       statusColor: "bg-green-900 border-green-700",
     },
     {
-      name: "Applied AI Tooling",
-      tagline: "Internal automation and orchestration",
+      name: "Trade Alerts",
+      url: "https://trade-alerts.vercel.app",
+      tagline: "Real-time trading signals platform",
       description:
-        "Suite of automation tools: scheduled workflows, webhook processors, document pipelines, cost tracking dashboards. Powers our ops and internal processes.",
+        "Automated trading signal generation and alerting system. Monitors market conditions, analyzes patterns, and delivers actionable trade alerts in real-time.",
       aiUsage: [
-        "Scheduled batch processing (Vercel cron)",
-        "Queue-based workflow orchestration",
-        "Real-time cost and latency tracking",
-        "Error detection and alerting",
+        "Pattern recognition for trade setups",
+        "Risk/reward analysis and position sizing",
+        "Market sentiment analysis",
+        "Real-time alert delivery system",
       ],
       architecture: {
-        input: "Scheduled triggers or webhook events",
+        input: "Live market data feeds",
         processing:
-          "Fan-out to multiple AI tasks → aggregate results → log everything",
-        output: "Audit log, metrics, alerts, processed data",
+          "Data ingestion → pattern analysis → signal validation → alert dispatch",
+        output: "Trade alerts, risk metrics, performance tracking",
       },
-      metrics: "10K+ automations/day, 99.9% uptime, <5min end-to-end latency",
-      status: "Beta",
-      statusColor: "bg-yellow-900 border-yellow-700",
+      metrics: "Real-time alerts, backtested strategies, low-latency execution",
+      status: "Production",
+      statusColor: "bg-green-900 border-green-700",
     },
   ];
 
@@ -84,14 +87,31 @@ export default function Projects() {
             <div className="flex items-start justify-between mb-6">
               <div>
                 <h2 className="text-2xl font-mono font-bold mb-2">
-                  {project.name}
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-blue-400 transition"
+                  >
+                    {project.name}
+                  </a>
                 </h2>
                 <p className="text-slate-400">{project.tagline}</p>
               </div>
-              <div
-                className={`px-3 py-1 rounded text-sm font-mono border ${project.statusColor}`}
-              >
-                {project.status}
+              <div className="flex items-center gap-3">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1 rounded text-sm font-mono border border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white transition"
+                >
+                  Visit Site →
+                </a>
+                <div
+                  className={`px-3 py-1 rounded text-sm font-mono border ${project.statusColor}`}
+                >
+                  {project.status}
+                </div>
               </div>
             </div>
 
@@ -175,8 +195,7 @@ export default function Projects() {
           <li className="flex gap-4">
             <span className="text-blue-400 font-bold flex-shrink-0">→</span>
             <span>
-              We understand compliance (IRS), brand consistency (PaparizeMe),
-              and automation (ops).
+              We understand e-commerce, creator platforms, and trading systems.
             </span>
           </li>
           <li className="flex gap-4">
