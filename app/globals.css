@@ -2,42 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* PWA & Mobile-specific Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  -webkit-user-select: none;
-  user-select: none;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-user-select: text;
-  user-select: text;
+  background-color: #ffffff;
+  color: #1f2937;
+  overflow-x: hidden;
 }
 
-/* Prevent viewport bounce on iOS */
-body {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
-}
-
-#__next {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Support notch/safe area */
+/* PWA Safe Area Support */
 @supports (padding: max(0px)) {
   body {
     padding-left: max(0px, env(safe-area-inset-left));
@@ -47,35 +34,26 @@ body {
   }
 }
 
-/* Smooth transitions */
-* {
-  -webkit-tap-highlight-color: transparent;
+/* Smooth transitions for interactive elements */
+a,
+button,
+[role="button"] {
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-button {
-  cursor: pointer;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-input, textarea, select {
-  -webkit-user-select: text;
-  user-select: text;
-}
-
-/* Form inputs - mobile friendly */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="number"],
-input[type="url"],
+/* Form styling - iOS friendly */
+input,
 textarea,
 select {
-  font-size: 16px; /* Prevents zoom on iOS */
-  padding: 12px;
+  font-family: inherit;
+  font-size: 16px;
+  min-height: 48px;
+  padding: 12px 14px;
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  transition: all 0.2s ease;
+  border: 2px solid #e5e7eb;
+  background-color: #ffffff;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 input:focus,
@@ -86,38 +64,46 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* Buttons - mobile friendly */
+/* Remove default radio/checkbox styling for custom */
+input[type="radio"],
+input[type="checkbox"] {
+  min-height: auto;
+  min-width: auto;
+  width: 20px;
+  height: 20px;
+}
+
+/* Button styling */
 button {
-  min-height: 44px; /* Apple HIG minimum */
-  padding: 12px 16px;
+  cursor: pointer;
+  min-height: 44px;
   font-size: 16px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  font-weight: 500;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button:active {
-  transform: scale(0.98);
   opacity: 0.8;
 }
 
 button:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-/* Text selection */
-::selection {
-  background-color: #2563eb;
-  color: white;
-}
-
-::-moz-selection {
-  background-color: #2563eb;
-  color: white;
-}
-
 /* Animations */
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -138,66 +124,41 @@ button:disabled {
   }
 }
 
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+.animate-in {
+  animation: slideInFromBottom 300ms ease-out;
 }
 
 .animate-fadeIn {
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn 400ms ease-out;
 }
 
 .animate-slideUp {
-  animation: slideUp 0.3s ease;
+  animation: slideUp 400ms ease-out;
 }
 
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+/* Utility classes */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Text selection */
+::selection {
+  background-color: #2563eb;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #2563eb;
+  color: white;
 }
 
 /* Links */
 a {
-  color: #2563eb;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: #1d4ed8;
-  text-decoration: underline;
-}
-
-a:active {
-  opacity: 0.8;
-}
-
-/* Code blocks */
-code {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  background-color: #f3f4f6;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.9em;
-}
-
-pre {
-  background-color: #1f2937;
-  color: #f3f4f6;
-  padding: 16px;
-  border-radius: 8px;
-  overflow-x: auto;
-  font-size: 0.875em;
-  line-height: 1.5;
-}
-
-pre code {
-  background-color: transparent;
-  padding: 0;
   color: inherit;
+  text-decoration: none;
 }
 
 /* Scrollbar styling */
@@ -211,37 +172,32 @@ pre code {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Print styles */
-@media print {
-  body {
-    background: white;
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  html {
+    scroll-padding-top: 60px;
   }
-  
-  button, input[type="submit"] {
-    display: none;
-  }
-}
 
-/* High contrast mode */
-@media (prefers-contrast: more) {
-  body {
-    font-weight: 500;
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* Prevents zoom on iOS */
   }
-  
+
   button {
-    border: 2px solid currentColor;
+    min-height: 44px; /* Apple touch target */
   }
 }
 
-/* Reduced motion */
+/* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -252,21 +208,9 @@ pre code {
   }
 }
 
-/* Dark mode (optional) */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #1f2937;
-    color: #f3f4f6;
-  }
-  
-  input, textarea, select {
-    background-color: #374151;
-    border-color: #4b5563;
-    color: #f3f4f6;
-  }
-  
-  code {
-    background-color: #374151;
-    color: #f3f4f6;
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  button {
+    border: 2px solid currentColor;
   }
 }
