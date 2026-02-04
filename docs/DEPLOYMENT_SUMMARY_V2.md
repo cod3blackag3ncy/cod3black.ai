@@ -197,7 +197,7 @@ docs/DEPLOYMENT_SUMMARY_V2.md (you are here)
 ## Deployment Status
 
 ### ✅ Live (Deployed Feb 4, 2026)
-**URL:** https://cod3blackagency.vercel.app/c3bai
+**URL:** https://c3bai.vercel.app
 
 - Generalized inquiry form (web design, apps, software, integrations)
 - Updated scope estimation algorithm
@@ -424,7 +424,7 @@ If you need to:
 
 **Status:** Ready for launch  
 **Deployed:** Feb 4, 2026  
-**Live URL:** https://cod3blackagency.vercel.app/c3bai  
+**Live URL:** https://c3bai.vercel.app  
 **GitHub:** https://github.com/wizelements/c3bai
 
 ---

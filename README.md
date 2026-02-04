@@ -54,7 +54,7 @@ npm run dev
 
 ## Live Deployment
 
-**Site is live:** https://cod3blackagency.vercel.app/c3bai (Vercel)
+**Site is live:** https://c3bai.vercel.app
 
 **GitHub:** https://github.com/wizelements/c3bai
 
