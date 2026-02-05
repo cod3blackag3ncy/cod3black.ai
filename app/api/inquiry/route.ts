@@ -176,7 +176,7 @@ export async function POST(request: NextRequest) {
       const resend = getResend();
       // Send confirmation email to prospect
       await resend.emails.send({
-        from: 'Cod3Black <hello@c3bai.com>',
+        from: 'Cod3Black <hello@mail.codewithsolo.com>',
         to: formData.email,
         subject: `Thanks for your inquiry - ${formData.projectName}`,
         html: `
@@ -207,8 +207,8 @@ export async function POST(request: NextRequest) {
 
       // Send notification to team
       await resend.emails.send({
-        from: 'Cod3Black System <hello@c3bai.com>',
-        to: 'hello@c3bai.com',
+        from: 'Cod3Black System <hello@mail.codewithsolo.com>',
+        to: 'cod3blackagency@gmail.com',
         subject: `New Inquiry: ${formData.projectName} - ${formData.name}`,
         html: `
           <h1>New Project Inquiry</h1>
