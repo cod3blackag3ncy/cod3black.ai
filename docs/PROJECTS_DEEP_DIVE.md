@@ -155,9 +155,11 @@ A trader had a React Native app with:
 - Performance improvements
 - Security hardening
 
+**Live Site:** [ktradealerts.vercel.app](https://ktradealerts.vercel.app)
+
 ---
 
-## 3. Gratog - Project Management Tool
+## 3. Taste of Gratitude - Food Ordering System
 
 ### The Problem
 A team needed a lightweight project management tool with:

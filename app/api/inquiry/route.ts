@@ -5,6 +5,7 @@
  */
 
 import { NextRequest } from 'next/server';
+import { Resend } from 'resend';
 
 interface RateLimitEntry {
   count: number;
@@ -54,6 +55,10 @@ interface Estimate {
 const RATE_LIMIT_WINDOW_MS = 60 * 1000;
 const RATE_LIMIT_MAX = 5;
 const rateLimitStore = new Map<string, RateLimitEntry>();
+
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY || '');
+}
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
@@ -166,11 +171,81 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
 
-    // In production:
-    // 1. Save to database
-    // 2. Send auto-response email to prospect
-    // 3. Send internal notification to team
-    // 4. Add to Slack notification
+    // Send email notifications via Resend
+    try {
+      const resend = getResend();
+      // Send confirmation email to prospect
+      await resend.emails.send({
+        from: 'Cod3Black <hello@c3bai.com>',
+        to: formData.email,
+        subject: `Thanks for your inquiry - ${formData.projectName}`,
+        html: `
+          <h1>Thanks for reaching out, ${formData.name}!</h1>
+          <p>We received your project inquiry for <strong>${formData.projectName}</strong>.</p>
+          
+          <h2>Your Preliminary Estimate</h2>
+          <ul>
+            <li><strong>Project Type:</strong> ${formData.projectType}</li>
+            <li><strong>Estimated Hours:</strong> ${estimate.estimatedHours} hours</li>
+            <li><strong>Rate:</strong> $${estimate.hourlyRate}/hour${estimate.isPartnerQualified ? ' (Friends & Family Rate!)' : ''}</li>
+            <li><strong>Estimated Timeline:</strong> ${estimate.estimatedDuration}</li>
+          </ul>
+          
+          <p><em>${estimate.disclaimer}</em></p>
+          
+          <h2>What Happens Next</h2>
+          <ol>
+            <li>We'll review your project details (within 24 hours)</li>
+            <li>We'll reach out via ${formData.contactMethod} to discuss</li>
+            <li>You'll receive a final quote by email</li>
+          </ol>
+          
+          <p>Questions? Just reply to this email.</p>
+          <p>— The Cod3Black Team</p>
+        `,
+      });
+
+      // Send notification to team
+      await resend.emails.send({
+        from: 'Cod3Black System <hello@c3bai.com>',
+        to: 'hello@c3bai.com',
+        subject: `New Inquiry: ${formData.projectName} - ${formData.name}`,
+        html: `
+          <h1>New Project Inquiry</h1>
+          <p><strong>Inquiry ID:</strong> ${inquiryId}</p>
+          
+          <h2>Contact</h2>
+          <ul>
+            <li><strong>Name:</strong> ${formData.name}</li>
+            <li><strong>Email:</strong> ${formData.email}</li>
+            <li><strong>Company:</strong> ${formData.company || 'Not provided'}</li>
+            <li><strong>Preferred Contact:</strong> ${formData.contactMethod}</li>
+          </ul>
+          
+          <h2>Project Details</h2>
+          <ul>
+            <li><strong>Project:</strong> ${formData.projectName}</li>
+            <li><strong>Type:</strong> ${formData.projectType}</li>
+            <li><strong>Description:</strong> ${formData.description}</li>
+            <li><strong>Timeline:</strong> ${formData.timeline}</li>
+            <li><strong>Budget:</strong> ${formData.budgetExpectation}</li>
+          </ul>
+          
+          <h2>Estimate</h2>
+          <ul>
+            <li><strong>Hours:</strong> ${estimate.estimatedHours}</li>
+            <li><strong>Rate:</strong> $${estimate.hourlyRate}/hour</li>
+            <li><strong>Partner Qualified:</strong> ${estimate.isPartnerQualified ? 'Yes' : 'No'}</li>
+            <li><strong>Timeline:</strong> ${estimate.estimatedDuration}</li>
+          </ul>
+          
+          ${formData.additionalInfo ? `<h2>Additional Notes</h2><p>${formData.additionalInfo}</p>` : ''}
+        `,
+      });
+    } catch (emailError) {
+      console.error('Email sending failed:', emailError);
+      // Don't fail the request if email fails - log and continue
+    }
 
     return Response.json({
       success: true,

@@ -3,8 +3,8 @@ import type { Metadata, Viewport } from 'next';
 import PWAInstall from './pwa-install';
 
 export const metadata: Metadata = {
-  title: 'Cod3Black - Production Systems: Web, AI, Apps, Software',
-  description: 'We build production systems. Not marketing platforms. Not toy demos. Custom web, AI automation, mobile apps, SaaS platforms. Real latency. Real costs. Real reliability. $125/hour transparent pricing.',
+  title: 'Cod3Black - Custom Websites, Apps & Software',
+  description: 'We design and build custom websites, mobile apps, and business software. Simple pricing at $125/hour. No hidden fees, no templates.',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     ]
   },
   openGraph: {
-    title: 'Cod3Black - Production Systems: Web, AI, Apps, Software',
-    description: 'We build production systems. Not marketing platforms. Not toy demos. Custom web, AI automation, mobile apps, SaaS platforms. Real latency. Real costs. Real reliability. $125/hour transparent pricing.',
+    title: 'Cod3Black - Custom Websites, Apps & Software',
+    description: 'We design and build custom websites, mobile apps, and business software. Simple pricing at $125/hour. No hidden fees, no templates.',
     url: 'https://c3bai.vercel.app',
     siteName: 'Cod3Black Agency',
     images: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Cod3Black Agency - Production Systems'
+        alt: 'Cod3Black Agency - Custom Websites & Apps'
       }
     ],
     locale: 'en_US',
@@ -44,8 +44,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cod3Black - Production Systems: Web, AI, Apps, Software',
-    description: 'We build production systems. Not marketing platforms. Not toy demos. Custom web, AI automation, mobile apps, SaaS platforms. Real latency. Real costs. Real reliability. $125/hour transparent pricing.',
+    title: 'Cod3Black - Custom Websites, Apps & Software',
+    description: 'We design and build custom websites, mobile apps, and business software. Simple pricing at $125/hour. No hidden fees, no templates.',
     images: ['/twitter-card.png']
   },
   metadataBase: new URL('https://c3bai.vercel.app')
@@ -67,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Cod3Black" />
-        <meta name="description" content="Custom web design, mobile apps, and software development. $125/hour transparent pricing." />
+        <meta name="description" content="Custom websites, mobile apps, and business software. $125/hour. No hidden fees." />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

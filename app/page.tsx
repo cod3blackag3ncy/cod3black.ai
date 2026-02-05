@@ -8,63 +8,63 @@ const projects = [
   {
     name: 'Beltline Golf',
     description: 'Golf booking system with online payments, leaderboard, and digital waivers.',
-    stats: ['3x bookings', '$15K/mo revenue', '4.8★ rating'],
+    stats: ['~80 hours', '8 weeks', 'Booking + Payments'],
     url: 'https://beltlinegolf.com',
-    tags: ['React', 'Stripe', 'Real-time'],
+    tags: ['React', 'Stripe', 'Dashboard'],
   },
   {
     name: 'TradeAlerts',
-    description: 'React Native trading app optimized for performance and reliability.',
-    stats: ['0 errors', '3.2s→1.1s load', '98 Lighthouse'],
-    url: 'https://tradealerts.app',
-    tags: ['React Native', 'PWA', 'TypeScript'],
+    description: 'Trading app with real-time alerts, PWA support, and fast performance.',
+    stats: ['~60 hours', '3 weeks', 'PWA + Mobile'],
+    url: 'https://ktradealerts.vercel.app',
+    tags: ['React', 'PWA', 'TypeScript'],
   },
   {
-    name: 'Gratog',
-    description: 'Real-time project collaboration and task management platform.',
-    stats: ['90% adoption', '95% on-time tasks', '80% fewer meetings'],
-    url: 'https://gratog.app',
-    tags: ['Collaboration', 'Dashboard', 'Real-time'],
+    name: 'Taste of Gratitude',
+    description: 'Food ordering with online payments and local delivery tracking.',
+    stats: ['~40 hours', '2 weeks', 'E-commerce'],
+    url: 'https://tasteofgratitude.shop',
+    tags: ['Next.js', 'Payments', 'Mobile'],
   },
   {
     name: 'Image-to-SVG',
-    description: 'Batch image converter with AI-powered vector tracing.',
-    stats: ['2,500h → 1h', 'Saved $50K+', '99% accuracy'],
-    url: 'https://image-to-svg.app',
-    tags: ['AI', 'Batch Processing', 'Automation'],
+    description: 'Batch image converter that turns photos into scalable vector graphics.',
+    stats: ['~20 hours', '1 week', 'Automation'],
+    url: 'https://img-to-svg.vercel.app',
+    tags: ['React', 'Processing', 'Tool'],
   },
 ];
 
 const services = [
   {
     icon: '🎨',
-    title: 'Web Design & Development',
-    description: 'Marketing sites, portfolios, SaaS dashboards, and custom web applications. React, Next.js, TypeScript.',
+    title: 'Websites & Online Stores',
+    description: 'Business websites, portfolios, online stores, and custom web applications that look great on any device.',
   },
   {
     icon: '📱',
     title: 'Mobile Apps',
-    description: 'iOS & Android apps, React Native, cross-platform development, and app store launches.',
+    description: 'iPhone and Android apps that your customers can download and use on the go.',
   },
   {
     icon: '🤖',
     title: 'AI & Automation',
-    description: 'LLM inference (GPT-4, Claude, Gemini), document processing, structured outputs, automation workflows.',
+    description: 'Smart tools that save you time. Automate repetitive tasks, process documents, and get work done faster.',
   },
   {
     icon: '⚙️',
-    title: 'Integrations & APIs',
-    description: 'Connect systems, third-party APIs, webhooks, data pipelines, real-time communication.',
+    title: 'Connect Your Tools',
+    description: 'Link your website to payments, email, scheduling, and other business software so everything works together.',
   },
   {
     icon: '📊',
-    title: 'Dashboards & Analytics',
-    description: 'Real-time dashboards, business intelligence, data visualization, and reporting systems.',
+    title: 'Dashboards & Reports',
+    description: 'See your business data in one place. Track sales, customers, and performance with easy-to-read dashboards.',
   },
   {
     icon: '🚀',
-    title: 'MVPs & Modernization',
-    description: 'Proof of concepts, existing site improvements, legacy system modernization, performance optimization.',
+    title: 'Quick Prototypes & Refreshes',
+    description: 'Get your idea off the ground fast, or refresh your existing website to work better on phones and load faster.',
   },
 ];
 
@@ -107,19 +107,19 @@ export default function Home() {
           
           <div className="relative max-w-5xl mx-auto text-center">
             <div className="inline-block mb-6 px-4 py-2 bg-blue-500 bg-opacity-30 border border-blue-300 rounded-full text-sm font-semibold">
-              ⚡ Production-Grade Engineering
+              ⚡ Professional Web Design & Apps
             </div>
             
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-              We Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-cyan-100 font-extrabold drop-shadow-lg">Production Systems</span>
+              We Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-cyan-100 font-extrabold drop-shadow-lg">Websites, Apps & Software</span>
             </h1>
             
             <p className="text-lg sm:text-xl mb-4 text-blue-100 max-w-3xl mx-auto leading-relaxed font-semibold">
-              Not marketing platforms. Not toy demos. Not filler. Systems that consume real compute, handle real constraints, and solve real problems at scale.
+              No templates. No cookie-cutter solutions. We create custom digital products that actually work for your business.
             </p>
             
             <p className="text-lg sm:text-lg mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Custom web design, mobile apps, AI automation, integrations, and SaaS platforms. We think in tokens, costs, latency, and reliability. You&apos;re buying experienced engineering hours at fair, transparent rates.
+              Custom websites, mobile apps, online stores, and business software. Simple pricing at $125/hour. You know exactly what you&apos;re paying for.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
@@ -131,27 +131,30 @@ export default function Home() {
               </a>
             </div>
             
-            {/* Pricing cards */}
+            {/* Pricing cards - based on actual project history */}
             <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
               <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 hover:border-opacity-40 transition">
-                <div className="text-4xl font-bold mb-2">$2,500</div>
-                <div className="text-sm text-blue-100 mb-3">Starter</div>
-                <div className="text-xs text-blue-200">20 hours/month</div>
+                <div className="text-4xl font-bold mb-2">$500–$1,500</div>
+                <div className="text-sm text-blue-100 mb-3">Quick Fixes</div>
+                <div className="text-xs text-blue-200">4-12 hours • 1-3 days</div>
+                <div className="text-xs text-blue-300 mt-2">Bug fixes, small updates, single features</div>
               </div>
               <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 hover:border-opacity-40 transition ring-2 ring-yellow-400 ring-opacity-50">
-                <div className="text-4xl font-bold mb-2">$7,500</div>
-                <div className="text-sm text-blue-100 mb-3">Professional</div>
-                <div className="text-xs text-blue-200">60 hours/month</div>
+                <div className="text-4xl font-bold mb-2">$2K–$5K</div>
+                <div className="text-sm text-blue-100 mb-3">Small Projects</div>
+                <div className="text-xs text-blue-200">16-40 hours • 1-2 weeks</div>
+                <div className="text-xs text-blue-300 mt-2">Landing pages, PWAs, simple web apps</div>
               </div>
               <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 hover:border-opacity-40 transition">
-                <div className="text-4xl font-bold mb-2">$20K+</div>
-                <div className="text-sm text-blue-100 mb-3">Enterprise</div>
-                <div className="text-xs text-blue-200">160+ hours/month</div>
+                <div className="text-4xl font-bold mb-2">$5K–$15K</div>
+                <div className="text-sm text-blue-100 mb-3">Full Apps</div>
+                <div className="text-xs text-blue-200">40-120 hours • 2-6 weeks</div>
+                <div className="text-xs text-blue-300 mt-2">E-commerce, booking systems, dashboards</div>
               </div>
             </div>
             
             <p className="text-blue-100 text-sm mt-8">
-              💰 <span className="font-semibold">Partner Rate:</span> $65/hour for referral partners, ongoing relationships, and early supporters
+              💰 <span className="font-semibold">Friends & Family Rate:</span> $65/hour for referrals and repeat customers (normally $125/hour)
             </p>
           </div>
         </section>
@@ -162,7 +165,7 @@ export default function Home() {
             <div className="text-center mb-16">
               <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">What We Build</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                From simple marketing websites to complex SaaS platforms, we deliver production-grade solutions with transparent pricing.
+                From simple landing pages to full business apps. Most projects take 2-8 weeks.
               </p>
             </div>
             
@@ -178,57 +181,57 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Production Patterns Section */}
+        {/* How We Work Section */}
         <section className="py-24 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">How We Build Production Systems</h2>
+              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">How We Work</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Not theories. Not tutorials. Real patterns from real systems handling real constraints.
+                We focus on what actually matters for your business.
               </p>
             </div>
             
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
                 <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                  <Zap size={24} className="text-yellow-600" aria-hidden="true" /> LLM Inference & Cost Tracking
+                  <Zap size={24} className="text-yellow-600" aria-hidden="true" /> Smart AI Tools
                 </h3>
-                <p className="text-sm text-gray-500 mb-3">Provider-agnostic SDKs, structured outputs, token counting</p>
-                <p className="text-gray-600">Call GPT-4, Claude, Gemini through a unified interface. Real API calls, real latency tracking, real cost awareness.</p>
+                <p className="text-sm text-gray-500 mb-3">Automation that works</p>
+                <p className="text-gray-600">We use the latest AI to help automate your workflows without overcomplicating things.</p>
               </div>
               
               <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
                 <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                  <Gauge size={24} className="text-blue-600" aria-hidden="true" /> Error Handling & Reliability
+                  <Gauge size={24} className="text-blue-600" aria-hidden="true" /> Built to Last
                 </h3>
-                <p className="text-sm text-gray-500 mb-3">API validation, schema validation, retry logic, monitoring</p>
-                <p className="text-gray-600">Deterministic outputs where they matter. Exponential backoff. Graceful degradation. Every failure is logged.</p>
+                <p className="text-sm text-gray-500 mb-3">Reliable, tested solutions</p>
+                <p className="text-gray-600">We build things that work consistently. No random crashes or downtime.</p>
               </div>
               
               <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
                 <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                  <Check size={24} className="text-green-600" aria-hidden="true" /> Structured Outputs & Validation
+                  <Check size={24} className="text-green-600" aria-hidden="true" /> Clean & Organized
                 </h3>
-                <p className="text-sm text-gray-500 mb-3">Zod schemas, runtime validation, type safety</p>
-                <p className="text-gray-600">Not just text. Schema-compliant JSON with validated fields. AI hallucinations are caught before production.</p>
+                <p className="text-sm text-gray-500 mb-3">Everything in its place</p>
+                <p className="text-gray-600">Your data stays organized and secure. We catch problems before they reach your customers.</p>
               </div>
               
               <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
                 <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                  <Users size={24} className="text-purple-600" aria-hidden="true" /> Scalable & Transparent
+                  <Users size={24} className="text-purple-600" aria-hidden="true" /> Honest Pricing
                 </h3>
-                <p className="text-sm text-gray-500 mb-3">Serverless deployment, cost per inference, fair pricing</p>
-                <p className="text-gray-600">Auto-scaling infrastructure. $125/hour base rate. No hidden fees. Partner rates for ongoing relationships.</p>
+                <p className="text-sm text-gray-500 mb-3">No surprises</p>
+                <p className="text-gray-600">Pay $125/hour. That&apos;s it. We track every hour so you know where your money goes.</p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Reality Check Section */}
+        {/* What Makes Us Different Section */}
         <section className="py-24 px-4 sm:px-6 bg-white border-y border-gray-200">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">The Reality Check</h2>
+              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">What Makes Us Different</h2>
             </div>
             
             <div className="grid md:grid-cols-2 gap-12 max-w-3xl mx-auto">
@@ -236,16 +239,16 @@ export default function Home() {
                 <div className="flex items-start gap-4">
                   <div className="text-2xl">✓</div>
                   <div>
-                    <h4 className="font-bold text-gray-900">We don&apos;t hide latency</h4>
-                    <p className="text-gray-600 text-sm">Every API call shows real response times. If it takes 2 seconds, you see 2 seconds.</p>
+                    <h4 className="font-bold text-gray-900">We&apos;re upfront about everything</h4>
+                    <p className="text-gray-600 text-sm">No hidden fees, no surprise charges. What we quote is what you pay.</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
                   <div className="text-2xl">✓</div>
                   <div>
-                    <h4 className="font-bold text-gray-900">We think in tokens and costs</h4>
-                    <p className="text-gray-600 text-sm">GPT-4: expensive. Claude: cheaper. Gemini: different trade-offs. We pick the right tool.</p>
+                    <h4 className="font-bold text-gray-900">We respect your budget</h4>
+                    <p className="text-gray-600 text-sm">We pick the right tools for your project so you don&apos;t overpay for things you don&apos;t need.</p>
                   </div>
                 </div>
               </div>
@@ -254,16 +257,16 @@ export default function Home() {
                 <div className="flex items-start gap-4">
                   <div className="text-2xl">✓</div>
                   <div>
-                    <h4 className="font-bold text-gray-900">Deterministic when it matters</h4>
-                    <p className="text-gray-600 text-sm">Regulatory docs need consistency. Generate images? Sampling is fine. Context matters.</p>
+                    <h4 className="font-bold text-gray-900">Consistent quality</h4>
+                    <p className="text-gray-600 text-sm">Your website or app will work the same way every time, for every customer.</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
                   <div className="text-2xl">✓</div>
                   <div>
-                    <h4 className="font-bold text-gray-900">Production means error handling</h4>
-                    <p className="text-gray-600 text-sm">Retries. Rate limit backoff. Graceful degradation. Monitoring. It&apos;s not fancy, but it works.</p>
+                    <h4 className="font-bold text-gray-900">We plan for problems</h4>
+                    <p className="text-gray-600 text-sm">Things go wrong sometimes. We build in safety nets so your business keeps running.</p>
                   </div>
                 </div>
               </div>
@@ -390,7 +393,7 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6">Ready to Build Something Great?</h2>
             <p className="text-lg mb-8 text-blue-100">
-              Let&apos;s start with a conversation. Tell us about your project and we&apos;ll provide a transparent estimate in minutes.
+              Tell us about your project and get a free estimate. No pressure, no obligations.
             </p>
             <a href="#inquiry" className="inline-block px-8 py-4 bg-white text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition shadow-lg">
               Get Your Estimate Now
@@ -437,8 +440,8 @@ export default function Home() {
             </div>
             
             <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-               <p>© 2026 Cod3Black Agency. We build production systems. Not marketing platforms. Not toy demos.</p>
-               <p className="mt-2 text-xs">Custom web, mobile, AI, and software development. $125/hour transparent pricing.</p>
+               <p>© 2026 Cod3Black Agency. Custom websites, apps, and software. Built right, priced fair.</p>
+               <p className="mt-2 text-xs">$125/hour transparent pricing. No hidden fees.</p>
              </div>
           </div>
         </footer>
