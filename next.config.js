@@ -48,6 +48,33 @@ const nextConfig = {
           }
         ]
       },
+      // robots and sitemap
+      {
+        source: '/robots.txt',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, must-revalidate'
+          },
+          {
+            key: 'Content-Type',
+            value: 'text/plain; charset=utf-8'
+          }
+        ]
+      },
+      {
+        source: '/sitemap.xml',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, must-revalidate'
+          },
+          {
+            key: 'Content-Type',
+            value: 'application/xml; charset=utf-8'
+          }
+        ]
+      },
       // Manifest - cache for 1 day
       {
         source: '/manifest.json',
@@ -81,7 +108,7 @@ const nextConfig = {
       beforeFiles: [
         {
           source: '/offline',
-          destination: '/offline.jsx'
+          destination: '/offline'
         }
       ]
     };

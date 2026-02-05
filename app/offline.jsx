@@ -6,9 +6,9 @@ export default function Offline() {
       <div className="text-center max-w-md">
         <div className="mb-6">
           <div className="text-6xl mb-4">📡</div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">You're Offline</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">You&apos;re Offline</h1>
           <p className="text-gray-600 mb-6">
-            It looks like you've lost your internet connection. Some features may be limited, but you can still browse our services.
+            It looks like you&apos;ve lost your internet connection. Some features may be limited, but you can still browse our services.
           </p>
         </div>
 
@@ -16,7 +16,7 @@ export default function Offline() {
           <h2 className="font-semibold text-blue-900 mb-2">What you can do:</h2>
           <ul className="text-sm text-blue-800 text-left space-y-1">
             <li>✓ Browse services and pricing</li>
-            <li>✓ View past pages you've visited</li>
+            <li>✓ View past pages you&apos;ve visited</li>
             <li>✗ Submit inquiry forms (will sync when online)</li>
             <li>✗ View live project updates</li>
           </ul>
@@ -31,7 +31,7 @@ export default function Offline() {
 
         <div className="mt-6 pt-6 border-t border-gray-200">
           <p className="text-xs text-gray-500">
-            Questions? Email us at hello@c3bai.com or check back when you're online.
+            Questions? Email us at hello@c3bai.com or check back when you&apos;re online.
           </p>
         </div>
       </div>

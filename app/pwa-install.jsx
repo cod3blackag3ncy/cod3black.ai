@@ -7,6 +7,7 @@ export default function PWAInstall() {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [showPrompt, setShowPrompt] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
+  const [canInstall, setCanInstall] = useState(false);
 
   useEffect(() => {
     // Check if app is already installed
@@ -32,6 +33,7 @@ export default function PWAInstall() {
       e.preventDefault();
       setDeferredPrompt(e);
       setShowPrompt(true);
+      setCanInstall(true);
     };
 
     // Hide prompt if already installed
@@ -39,6 +41,7 @@ export default function PWAInstall() {
       setShowPrompt(false);
       setDeferredPrompt(null);
       setIsInstalled(true);
+      setCanInstall(false);
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -68,7 +71,7 @@ export default function PWAInstall() {
     }
   };
 
-  if (!showPrompt || !deferredPrompt || isInstalled) {
+  if (!showPrompt || !deferredPrompt || isInstalled || !canInstall) {
     return null;
   }
 
@@ -87,14 +90,16 @@ export default function PWAInstall() {
         <button
           onClick={() => setShowPrompt(false)}
           className="text-blue-100 hover:text-white flex-shrink-0"
+          aria-label="Dismiss install prompt"
         >
-          <X size={20} />
+          <X size={20} aria-hidden="true" />
         </button>
       </div>
       <div className="flex gap-3 mt-4">
         <button
           onClick={handleInstall}
           className="flex-1 px-4 py-2.5 bg-white text-blue-600 rounded-lg hover:bg-blue-50 font-semibold text-sm transition"
+          aria-label="Install Cod3Black PWA"
         >
           Install
         </button>

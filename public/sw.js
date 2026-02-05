@@ -3,14 +3,18 @@
  * Provides offline support, caching, and instant loading
  */
 
-const CACHE_VERSION = 'c3bai-v2';
+const CACHE_VERSION = 'c3bai-v3';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DYNAMIC_CACHE = `${CACHE_VERSION}-dynamic`;
 
 const ASSETS_TO_CACHE = [
   '/',
+  '/offline',
   '/manifest.json',
   '/icon-192x192.png',
+  '/icon-512x512.png',
+  '/apple-touch-icon.png',
+  '/favicon.ico'
 ];
 
 // Install event
@@ -101,7 +105,7 @@ self.addEventListener('fetch', (event) => {
       }).catch(() => {
         // Return offline page for navigation requests
         if (request.mode === 'navigate') {
-          return caches.match('/');
+          return caches.match('/offline');
         }
         return null;
       });

@@ -81,8 +81,8 @@ export default function Home() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="text-2xl font-bold text-blue-600 flex items-center gap-2">
-            <Zap size={28} className="text-blue-600" />
+          <Link href="/" className="text-2xl font-bold text-blue-600 flex items-center gap-2" aria-label="Cod3Black home">
+            <Zap size={28} className="text-blue-600" aria-hidden="true" />
             Cod3Black
           </Link>
           <div className="hidden md:flex gap-8 text-sm font-medium">
@@ -119,15 +119,15 @@ export default function Home() {
             </p>
             
             <p className="text-lg sm:text-lg mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Custom web design, mobile apps, AI automation, integrations, and SaaS platforms. We think in tokens, costs, latency, and reliability. You're buying experienced engineering hours at fair, transparent rates.
+              Custom web design, mobile apps, AI automation, integrations, and SaaS platforms. We think in tokens, costs, latency, and reliability. You&apos;re buying experienced engineering hours at fair, transparent rates.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
               <a href="#inquiry" className="px-8 py-4 bg-white text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition shadow-lg inline-flex items-center justify-center gap-2">
-                Start Your Project <ArrowRight size={20} />
+                Start Your Project <ArrowRight size={20} aria-hidden="true" />
               </a>
               <a href="#projects" className="px-8 py-4 border-2 border-white text-white font-bold rounded-lg hover:bg-blue-500 transition inline-flex items-center justify-center gap-2">
-                See Our Work <ExternalLink size={20} />
+                See Our Work <ExternalLink size={20} aria-hidden="true" />
               </a>
             </div>
             
@@ -191,7 +191,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
                 <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                  <Zap size={24} className="text-yellow-600" /> LLM Inference & Cost Tracking
+                  <Zap size={24} className="text-yellow-600" aria-hidden="true" /> LLM Inference & Cost Tracking
                 </h3>
                 <p className="text-sm text-gray-500 mb-3">Provider-agnostic SDKs, structured outputs, token counting</p>
                 <p className="text-gray-600">Call GPT-4, Claude, Gemini through a unified interface. Real API calls, real latency tracking, real cost awareness.</p>
@@ -199,7 +199,7 @@ export default function Home() {
               
               <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
                 <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                  <Gauge size={24} className="text-blue-600" /> Error Handling & Reliability
+                  <Gauge size={24} className="text-blue-600" aria-hidden="true" /> Error Handling & Reliability
                 </h3>
                 <p className="text-sm text-gray-500 mb-3">API validation, schema validation, retry logic, monitoring</p>
                 <p className="text-gray-600">Deterministic outputs where they matter. Exponential backoff. Graceful degradation. Every failure is logged.</p>
@@ -207,7 +207,7 @@ export default function Home() {
               
               <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
                 <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                  <Check size={24} className="text-green-600" /> Structured Outputs & Validation
+                  <Check size={24} className="text-green-600" aria-hidden="true" /> Structured Outputs & Validation
                 </h3>
                 <p className="text-sm text-gray-500 mb-3">Zod schemas, runtime validation, type safety</p>
                 <p className="text-gray-600">Not just text. Schema-compliant JSON with validated fields. AI hallucinations are caught before production.</p>
@@ -215,7 +215,7 @@ export default function Home() {
               
               <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
                 <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                  <Users size={24} className="text-purple-600" /> Scalable & Transparent
+                  <Users size={24} className="text-purple-600" aria-hidden="true" /> Scalable & Transparent
                 </h3>
                 <p className="text-sm text-gray-500 mb-3">Serverless deployment, cost per inference, fair pricing</p>
                 <p className="text-gray-600">Auto-scaling infrastructure. $125/hour base rate. No hidden fees. Partner rates for ongoing relationships.</p>
@@ -236,7 +236,7 @@ export default function Home() {
                 <div className="flex items-start gap-4">
                   <div className="text-2xl">✓</div>
                   <div>
-                    <h4 className="font-bold text-gray-900">We don't hide latency</h4>
+                    <h4 className="font-bold text-gray-900">We don&apos;t hide latency</h4>
                     <p className="text-gray-600 text-sm">Every API call shows real response times. If it takes 2 seconds, you see 2 seconds.</p>
                   </div>
                 </div>
@@ -263,7 +263,7 @@ export default function Home() {
                   <div className="text-2xl">✓</div>
                   <div>
                     <h4 className="font-bold text-gray-900">Production means error handling</h4>
-                    <p className="text-gray-600 text-sm">Retries. Rate limit backoff. Graceful degradation. Monitoring. It's not fancy, but it works.</p>
+                    <p className="text-gray-600 text-sm">Retries. Rate limit backoff. Graceful degradation. Monitoring. It&apos;s not fancy, but it works.</p>
                   </div>
                 </div>
               </div>
@@ -274,8 +274,8 @@ export default function Home() {
         {/* Projects Section */}
         <section id="projects" className="py-24 px-4 sm:px-6 bg-white">
            <div className="max-w-5xl mx-auto">
-             <div className="text-center mb-16">
-               <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Real Projects We've Shipped</h2>
+              <div className="text-center mb-16">
+                <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Real Projects We&apos;ve Shipped</h2>
                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                  Projects with real problems, real solutions, and real results. Click to see them live.
                </p>
@@ -292,7 +292,7 @@ export default function Home() {
                 >
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition">{project.name}</h3>
-                    <ExternalLink size={20} className="text-gray-400 group-hover:text-blue-600 transition" />
+                    <ExternalLink size={20} className="text-gray-400 group-hover:text-blue-600 transition" aria-hidden="true" />
                   </div>
                   
                   <p className="text-gray-600 mb-6 line-clamp-2">{project.description}</p>
@@ -300,7 +300,7 @@ export default function Home() {
                   <div className="space-y-3 mb-6">
                     {project.stats.map((stat, i) => (
                       <div key={i} className="flex items-center gap-2 text-sm text-gray-700">
-                        <Check size={16} className="text-green-600 flex-shrink-0" />
+                        <Check size={16} className="text-green-600 flex-shrink-0" aria-hidden="true" />
                         <span className="font-medium">{stat}</span>
                       </div>
                     ))}
@@ -315,7 +315,7 @@ export default function Home() {
                   </div>
                   
                   <div className="mt-6 pt-6 border-t border-gray-200 flex items-center gap-2 text-blue-600 font-semibold group-hover:gap-3 transition">
-                    View Live <ExternalLink size={16} />
+                    View Live <ExternalLink size={16} aria-hidden="true" />
                   </div>
                 </a>
               ))}
@@ -323,7 +323,7 @@ export default function Home() {
             
             <div className="text-center">
               <Link href="/docs/projects" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-lg">
-                Read Full Case Studies <ArrowRight size={20} />
+                Read Full Case Studies <ArrowRight size={20} aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -335,7 +335,7 @@ export default function Home() {
             <div className="text-center mb-12">
               <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Tell Us About Your Project</h2>
               <p className="text-lg text-gray-600">
-                Let's understand your needs and give you an accurate estimate. Takes about 10 minutes.
+                Let&apos;s understand your needs and give you an accurate estimate. Takes about 10 minutes.
               </p>
             </div>
             <div className="bg-white rounded-xl shadow-lg p-8 sm:p-12">
@@ -360,7 +360,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition">Web Design Guide</h3>
                 <p className="text-gray-600 mb-4">Complete guide to designing and building effective websites that convert visitors into customers.</p>
                 <div className="text-blue-600 font-semibold flex items-center gap-2 group-hover:gap-3 transition">
-                  Read Guide <ArrowRight size={18} />
+                  Read Guide <ArrowRight size={18} aria-hidden="true" />
                 </div>
               </Link>
               
@@ -369,7 +369,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition">Mobile Apps Guide</h3>
                 <p className="text-gray-600 mb-4">How to build, launch, and monetize mobile applications for iOS and Android platforms.</p>
                 <div className="text-purple-600 font-semibold flex items-center gap-2 group-hover:gap-3 transition">
-                  Read Guide <ArrowRight size={18} />
+                  Read Guide <ArrowRight size={18} aria-hidden="true" />
                 </div>
               </Link>
               
@@ -378,7 +378,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition">Case Studies</h3>
                 <p className="text-gray-600 mb-4">Real projects with detailed breakdowns of problems, solutions, and the actual results achieved.</p>
                 <div className="text-green-600 font-semibold flex items-center gap-2 group-hover:gap-3 transition">
-                  Read Cases <ArrowRight size={18} />
+                  Read Cases <ArrowRight size={18} aria-hidden="true" />
                 </div>
               </Link>
             </div>
@@ -390,7 +390,7 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6">Ready to Build Something Great?</h2>
             <p className="text-lg mb-8 text-blue-100">
-              Let's start with a conversation. Tell us about your project and we'll provide a transparent estimate in minutes.
+              Let&apos;s start with a conversation. Tell us about your project and we&apos;ll provide a transparent estimate in minutes.
             </p>
             <a href="#inquiry" className="inline-block px-8 py-4 bg-white text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition shadow-lg">
               Get Your Estimate Now
@@ -404,7 +404,7 @@ export default function Home() {
             <div className="grid md:grid-cols-4 gap-8 mb-12">
               <div>
                 <h4 className="text-white font-bold text-lg mb-4 flex items-center gap-2">
-                  <Zap size={20} className="text-blue-400" />
+                  <Zap size={20} className="text-blue-400" aria-hidden="true" />
                   Cod3Black
                 </h4>
                 <p className="text-sm text-gray-400">

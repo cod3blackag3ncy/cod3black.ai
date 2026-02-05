@@ -12,6 +12,7 @@
 
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import { CheckCircle, AlertCircle, ArrowRight } from 'lucide-react';
 
@@ -19,6 +20,7 @@ const InquiryForm = () => {
   const [section, setSection] = useState(1);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [formData, setFormData] = useState({
     // Section 1: Basics
     projectName: '',
@@ -80,6 +82,7 @@ const InquiryForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setSubmitError('');
 
     try {
       const response = await fetch('/api/inquiry', {
@@ -90,9 +93,13 @@ const InquiryForm = () => {
 
       if (response.ok) {
         setSubmitted(true);
+      } else {
+        const payload = await response.json().catch(() => null);
+        setSubmitError(payload?.error || 'Submission failed. Please try again.');
       }
     } catch (error) {
       console.error('Form submission error:', error);
+      setSubmitError('Submission failed. Please check your connection and try again.');
     } finally {
       setLoading(false);
     }
@@ -109,10 +116,10 @@ const InquiryForm = () => {
   if (submitted) {
     return (
       <div className="max-w-2xl mx-auto p-6 text-center">
-        <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
+        <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" aria-hidden="true" />
         <h2 className="text-3xl font-bold mb-3">Thanks! We got your inquiry.</h2>
         <p className="text-lg text-gray-600 mb-4">
-          We'll review your project scope and send you a preliminary estimate within 24 hours.
+          We&apos;ll review your project scope and send you a preliminary estimate within 24 hours.
         </p>
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6 text-left">
           <h3 className="font-semibold mb-3">What happens next:</h3>
@@ -126,12 +133,12 @@ const InquiryForm = () => {
         <p className="text-gray-600 mb-6">
           Check your email for the initial response. Questions? Reply directly or call us.
         </p>
-        <a
+        <Link
           href="/"
           className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
         >
           Back to Home
-        </a>
+        </Link>
       </div>
     );
   }
@@ -166,10 +173,11 @@ const InquiryForm = () => {
         {section === 1 && (
           <div className="space-y-6 animate-fadeIn">
             <div>
-              <label className="block text-sm font-semibold mb-2">
-                What's your project called?
+              <label htmlFor="projectName" className="block text-sm font-semibold mb-2">
+                What&apos;s your project called?
               </label>
               <input
+                id="projectName"
                 type="text"
                 name="projectName"
                 value={formData.projectName}
@@ -180,11 +188,11 @@ const InquiryForm = () => {
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold mb-2">
+            <fieldset>
+              <legend className="block text-sm font-semibold mb-2">
                 What type of project is this?
-              </label>
-              <div className="space-y-2">
+              </legend>
+              <div className="space-y-2" role="radiogroup" aria-label="Project type">
                 {[
                   { value: 'website', label: 'Website (marketing, portfolio, content)' },
                   { value: 'web-app', label: 'Web App (dashboard, SaaS, tool)' },
@@ -193,7 +201,7 @@ const InquiryForm = () => {
                   { value: 'redesign', label: 'Redesign (existing site/app)' },
                   { value: 'mvp', label: 'MVP (proof of concept)' },
                   { value: 'other', label: 'Something else' }
-                ].map(option => (
+                ].map((option, index) => (
                   <label key={option.value} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded cursor-pointer">
                     <input
                       type="radio"
@@ -201,18 +209,21 @@ const InquiryForm = () => {
                       value={option.value}
                       checked={formData.projectType === option.value}
                       onChange={handleInputChange}
+                      aria-label={option.label}
+                      required={index === 0}
                     />
                     <span className="text-gray-700">{option.label}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
             <div>
-              <label className="block text-sm font-semibold mb-2">
+              <label htmlFor="description" className="block text-sm font-semibold mb-2">
                 Describe your project briefly
               </label>
               <textarea
+                id="description"
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
@@ -223,10 +234,11 @@ const InquiryForm = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold mb-2">
-                What's the core problem you're solving?
+              <label htmlFor="problemStatement" className="block text-sm font-semibold mb-2">
+                What&apos;s the core problem you&apos;re solving?
               </label>
               <input
+                id="problemStatement"
                 type="text"
                 name="problemStatement"
                 value={formData.problemStatement}
@@ -236,7 +248,7 @@ const InquiryForm = () => {
                 required
               />
               <p className="text-xs text-gray-600 mt-1">
-                Example: "Founders waste 4 hours/week managing invoices manually"
+                Example: &quot;Founders waste 4 hours/week managing invoices manually&quot;
               </p>
             </div>
 
@@ -251,16 +263,16 @@ const InquiryForm = () => {
         {/* SECTION 2: Scope & Features */}
         {section === 2 && (
           <div className="space-y-6 animate-fadeIn">
-            <div>
-              <label className="block text-sm font-semibold mb-3">
+            <fieldset>
+              <legend className="block text-sm font-semibold mb-3">
                 How much design work is needed?
-              </label>
-              <div className="space-y-2">
+              </legend>
+              <div className="space-y-2" role="radiogroup" aria-label="Design scope">
                 {[
                   { value: 'template', label: 'Use template/existing design (minimal design)' },
                   { value: 'moderate', label: 'Moderate design (customized layouts, colors, fonts)' },
                   { value: 'custom', label: 'Custom design (unique UI, brand identity)' },
-                  { value: 'unsure', label: "Not sure yet" }
+                  { value: 'unsure', label: 'Not sure yet' }
                 ].map(option => (
                   <label key={option.value} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded cursor-pointer">
                     <input
@@ -269,23 +281,24 @@ const InquiryForm = () => {
                       value={option.value}
                       checked={formData.designScope === option.value}
                       onChange={handleInputChange}
+                      aria-label={option.label}
                     />
                     <span className="text-gray-700">{option.label}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
-            <div>
-              <label className="block text-sm font-semibold mb-3">
+            <fieldset>
+              <legend className="block text-sm font-semibold mb-3">
                 Will this need a database or backend?
-              </label>
-              <div className="space-y-2">
+              </legend>
+              <div className="space-y-2" role="radiogroup" aria-label="Database requirements">
                 {[
                   { value: 'no', label: 'No (static site, marketing page)' },
                   { value: 'simple', label: 'Simple (basic storage, forms)' },
                   { value: 'complex', label: 'Complex (user accounts, real-time data, analytics)' },
-                  { value: 'unsure', label: "Not sure yet" }
+                  { value: 'unsure', label: 'Not sure yet' }
                 ].map(option => (
                   <label key={option.value} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded cursor-pointer">
                     <input
@@ -294,24 +307,25 @@ const InquiryForm = () => {
                       value={option.value}
                       checked={formData.databaseNeeded === option.value}
                       onChange={handleInputChange}
+                      aria-label={option.label}
                     />
                     <span className="text-gray-700">{option.label}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
-            <div>
-              <label className="block text-sm font-semibold mb-3">
+            <fieldset>
+              <legend className="block text-sm font-semibold mb-3">
                 How many third-party integrations? (Stripe, Slack, APIs, etc)
-              </label>
-              <div className="space-y-2">
+              </legend>
+              <div className="space-y-2" role="radiogroup" aria-label="Integration count">
                 {[
                   { value: 'none', label: 'None (standalone project)' },
                   { value: '1-2', label: '1-2 integrations' },
                   { value: '3-5', label: '3-5 integrations' },
                   { value: '5-plus', label: '5+ integrations' },
-                  { value: 'unsure', label: "Not sure yet" }
+                  { value: 'unsure', label: 'Not sure yet' }
                 ].map(option => (
                   <label key={option.value} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded cursor-pointer">
                     <input
@@ -320,18 +334,19 @@ const InquiryForm = () => {
                       value={option.value}
                       checked={formData.integrationCount === option.value}
                       onChange={handleInputChange}
+                      aria-label={option.label}
                     />
                     <span className="text-gray-700">{option.label}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
-            <div>
-              <label className="block text-sm font-semibold mb-3">
+            <fieldset>
+              <legend className="block text-sm font-semibold mb-3">
                 Which platforms do you need?
-              </label>
-              <div className="space-y-2">
+              </legend>
+              <div className="space-y-2" role="group" aria-label="Deployment platforms">
                 {[
                   { value: 'web', label: 'Web (desktop & mobile browsers)' },
                   { value: 'ios', label: 'iOS app' },
@@ -344,18 +359,19 @@ const InquiryForm = () => {
                       value={option.value}
                       checked={formData.deploymentRequirements.includes(option.value)}
                       onChange={(e) => handleCheckboxChange(e, 'deploymentRequirements')}
+                      aria-label={option.label}
                     />
                     <span className="text-gray-700">{option.label}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
-            <div>
-              <label className="block text-sm font-semibold mb-3">
+            <fieldset>
+              <legend className="block text-sm font-semibold mb-3">
                 Any special requirements?
-              </label>
-              <div className="space-y-2">
+              </legend>
+              <div className="space-y-2" role="group" aria-label="Special requirements">
                 {[
                   { value: 'compliance', label: 'Compliance/Security (HIPAA, GDPR, PCI)' },
                   { value: 'performance', label: 'Performance (fast load times, high traffic)' },
@@ -369,30 +385,31 @@ const InquiryForm = () => {
                       value={option.value}
                       checked={formData.specialRequirements.includes(option.value)}
                       onChange={(e) => handleCheckboxChange(e, 'specialRequirements')}
+                      aria-label={option.label}
                     />
                     <span className="text-gray-700">{option.label}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
           </div>
         )}
 
         {/* SECTION 3: Timeline & Budget */}
         {section === 3 && (
           <div className="space-y-6 animate-fadeIn">
-            <div>
-              <label className="block text-sm font-semibold mb-3">
+            <fieldset>
+              <legend className="block text-sm font-semibold mb-3">
                 When do you need this?
-              </label>
-              <div className="space-y-2">
+              </legend>
+              <div className="space-y-2" role="radiogroup" aria-label="Timeline">
                 {[
                   { value: 'flexible', label: 'Flexible (no rush)' },
                   { value: '3-months', label: '3 months' },
                   { value: '6-weeks', label: '6 weeks' },
                   { value: '4-weeks', label: '4 weeks' },
                   { value: 'urgent', label: 'ASAP (2-3 weeks)' }
-                ].map(option => (
+                ].map((option, index) => (
                   <label key={option.value} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded cursor-pointer">
                     <input
                       type="radio"
@@ -400,25 +417,27 @@ const InquiryForm = () => {
                       value={option.value}
                       checked={formData.timeline === option.value}
                       onChange={handleInputChange}
+                      aria-label={option.label}
+                      required={index === 0}
                     />
                     <span className="text-gray-700">{option.label}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
-            <div>
-              <label className="block text-sm font-semibold mb-3">
-                What's your budget expectation?
-              </label>
-              <div className="space-y-2">
+            <fieldset>
+              <legend className="block text-sm font-semibold mb-3">
+                What&apos;s your budget expectation?
+              </legend>
+              <div className="space-y-2" role="radiogroup" aria-label="Budget expectation">
                 {[
                   { value: 'under-5k', label: 'Under $5,000' },
                   { value: '5k-15k', label: '$5,000 - $15,000' },
                   { value: '15k-50k', label: '$15,000 - $50,000' },
                   { value: '50k-plus', label: '$50,000+' },
-                  { value: 'unsure', label: "Not sure yet" }
-                ].map(option => (
+                  { value: 'unsure', label: 'Not sure yet' }
+                ].map((option, index) => (
                   <label key={option.value} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded cursor-pointer">
                     <input
                       type="radio"
@@ -426,16 +445,18 @@ const InquiryForm = () => {
                       value={option.value}
                       checked={formData.budgetExpectation === option.value}
                       onChange={handleInputChange}
+                      aria-label={option.label}
+                      required={index === 0}
                     />
                     <span className="text-gray-700">{option.label}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
               <p className="text-sm text-amber-900">
-                <strong>Our approach:</strong> We charge $125/hour or $65/hour for partners. A small website might be 20-40 hours. A custom app could be 100-200+ hours. We'll estimate based on your scope.
+                <strong>Our approach:</strong> We charge $125/hour or $65/hour for partners. A small website might be 20-40 hours. A custom app could be 100-200+ hours. We&apos;ll estimate based on your scope.
               </p>
             </div>
           </div>
@@ -444,11 +465,11 @@ const InquiryForm = () => {
         {/* SECTION 4: Team & Technical */}
         {section === 4 && (
           <div className="space-y-6 animate-fadeIn">
-            <div>
-              <label className="block text-sm font-semibold mb-3">
+            <fieldset>
+              <legend className="block text-sm font-semibold mb-3">
                 Do you have existing code or a live site?
-              </label>
-              <div className="space-y-2">
+              </legend>
+              <div className="space-y-2" role="radiogroup" aria-label="Existing code">
                 {[
                   { value: 'none', label: 'Starting from scratch' },
                   { value: 'partial', label: 'Have some code/prototype' },
@@ -462,18 +483,19 @@ const InquiryForm = () => {
                       value={option.value}
                       checked={formData.existingCode === option.value}
                       onChange={handleInputChange}
+                      aria-label={option.label}
                     />
                     <span className="text-gray-700">{option.label}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
-            <div>
-              <label className="block text-sm font-semibold mb-3">
-                Your team's technical level
-              </label>
-              <div className="space-y-2">
+            <fieldset>
+              <legend className="block text-sm font-semibold mb-3">
+                Your team&apos;s technical level
+              </legend>
+              <div className="space-y-2" role="radiogroup" aria-label="Team technical level">
                 {[
                   { value: 'non-tech', label: 'Non-technical founder (need full support)' },
                   { value: 'mixed', label: 'Mixed team (designer + developer)' },
@@ -487,18 +509,20 @@ const InquiryForm = () => {
                       value={option.value}
                       checked={formData.teamLevel === option.value}
                       onChange={handleInputChange}
+                      aria-label={option.label}
                     />
                     <span className="text-gray-700">{option.label}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
             <div>
-              <label className="block text-sm font-semibold mb-2">
+              <label htmlFor="techStack" className="block text-sm font-semibold mb-2">
                 What tech stack do you prefer? (optional)
               </label>
               <input
+                id="techStack"
                 type="text"
                 name="techStack"
                 value={formData.techStack}
@@ -515,8 +539,9 @@ const InquiryForm = () => {
           <div className="space-y-6 animate-fadeIn">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold mb-2">Name</label>
+                <label htmlFor="name" className="block text-sm font-semibold mb-2">Name</label>
                 <input
+                  id="name"
                   type="text"
                   name="name"
                   value={formData.name}
@@ -527,8 +552,9 @@ const InquiryForm = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold mb-2">Email</label>
+                <label htmlFor="email" className="block text-sm font-semibold mb-2">Email</label>
                 <input
+                  id="email"
                   type="email"
                   name="email"
                   value={formData.email}
@@ -542,8 +568,9 @@ const InquiryForm = () => {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold mb-2">Company</label>
+                <label htmlFor="company" className="block text-sm font-semibold mb-2">Company</label>
                 <input
+                  id="company"
                   type="text"
                   name="company"
                   value={formData.company}
@@ -553,8 +580,9 @@ const InquiryForm = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold mb-2">Website</label>
+                <label htmlFor="website" className="block text-sm font-semibold mb-2">Website</label>
                 <input
+                  id="website"
                   type="url"
                   name="website"
                   value={formData.website}
@@ -565,11 +593,11 @@ const InquiryForm = () => {
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold mb-3">
+            <fieldset>
+              <legend className="block text-sm font-semibold mb-3">
                 Best way to reach you?
-              </label>
-              <div className="space-y-2">
+              </legend>
+              <div className="space-y-2" role="radiogroup" aria-label="Contact method">
                 {[
                   { value: 'email', label: 'Email' },
                   { value: 'phone', label: 'Phone' },
@@ -583,18 +611,20 @@ const InquiryForm = () => {
                       value={option.value}
                       checked={formData.contactMethod === option.value}
                       onChange={handleInputChange}
+                      aria-label={option.label}
                     />
                     <span className="text-gray-700">{option.label}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
             <div>
-              <label className="block text-sm font-semibold mb-2">
+              <label htmlFor="additionalInfo" className="block text-sm font-semibold mb-2">
                 Anything else we should know?
               </label>
               <textarea
+                id="additionalInfo"
                 name="additionalInfo"
                 value={formData.additionalInfo}
                 onChange={handleInputChange}
@@ -616,11 +646,11 @@ const InquiryForm = () => {
               </p>
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold mb-3">
+            <fieldset>
+              <legend className="block text-sm font-semibold mb-3">
                 How do you know us?
-              </label>
-              <div className="space-y-2">
+              </legend>
+              <div className="space-y-2" role="radiogroup" aria-label="Partner qualification">
                 {[
                   { value: 'none', label: 'First time hearing about us' },
                   { value: 'referral', label: 'Referred by a partner or client' },
@@ -635,19 +665,21 @@ const InquiryForm = () => {
                       value={option.value}
                       checked={formData.partnerQualification === option.value}
                       onChange={handleInputChange}
+                      aria-label={option.label}
                     />
                     <span className="text-gray-700">{option.label}</span>
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
             {(formData.partnerQualification && formData.partnerQualification !== 'none') && (
               <div>
-                <label className="block text-sm font-semibold mb-2">
+                <label htmlFor="partnerDetails" className="block text-sm font-semibold mb-2">
                   Tell us more (optional)
                 </label>
                 <textarea
+                  id="partnerDetails"
                   name="partnerDetails"
                   value={formData.partnerDetails}
                   onChange={handleInputChange}
@@ -669,6 +701,15 @@ const InquiryForm = () => {
         )}
 
         {/* Navigation Buttons */}
+        {submitError && (
+          <div role="alert" className="mt-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            <div className="flex items-start gap-2">
+              <AlertCircle className="mt-0.5 h-4 w-4" />
+              <span>{submitError}</span>
+            </div>
+          </div>
+        )}
+
         <div className="flex gap-4 mt-8">
           {section > 1 && (
             <button

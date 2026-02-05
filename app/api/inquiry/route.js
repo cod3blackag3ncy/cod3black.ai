@@ -4,9 +4,104 @@
  * Estimates scope and pricing for web design, apps, software, and custom projects
  */
 
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX = 5;
+const rateLimitStore = new Map();
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const entry = rateLimitStore.get(ip);
+  if (!entry || entry.resetAt <= now) {
+    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+
+  if (entry.count >= RATE_LIMIT_MAX) {
+    return true;
+  }
+
+  entry.count += 1;
+  return false;
+}
+
+function sanitizeInput(value) {
+  if (typeof value !== 'string') return '';
+  return value.trim().replace(/[<>]/g, '');
+}
+
+function sanitizeArray(values) {
+  if (!Array.isArray(values)) return [];
+  return values.map((value) => sanitizeInput(value)).filter(Boolean);
+}
+
+function normalizeInquiryPayload(payload) {
+  return {
+    projectName: sanitizeInput(payload.projectName),
+    description: sanitizeInput(payload.description),
+    problemStatement: sanitizeInput(payload.problemStatement),
+    projectType: sanitizeInput(payload.projectType),
+    designScope: sanitizeInput(payload.designScope),
+    integrationCount: sanitizeInput(payload.integrationCount),
+    databaseNeeded: sanitizeInput(payload.databaseNeeded),
+    integrationTypes: sanitizeArray(payload.integrationTypes),
+    deploymentRequirements: sanitizeArray(payload.deploymentRequirements),
+    timeline: sanitizeInput(payload.timeline),
+    budgetExpectation: sanitizeInput(payload.budgetExpectation),
+    techStack: sanitizeInput(payload.techStack),
+    existingCode: sanitizeInput(payload.existingCode),
+    teamLevel: sanitizeInput(payload.teamLevel),
+    specialRequirements: sanitizeArray(payload.specialRequirements),
+    name: sanitizeInput(payload.name),
+    email: sanitizeInput(payload.email).toLowerCase(),
+    company: sanitizeInput(payload.company),
+    website: sanitizeInput(payload.website),
+    contactMethod: sanitizeInput(payload.contactMethod),
+    additionalInfo: sanitizeInput(payload.additionalInfo),
+    partnerQualification: sanitizeInput(payload.partnerQualification),
+    partnerDetails: sanitizeInput(payload.partnerDetails)
+  };
+}
+
+function validateInquiryPayload(payload) {
+  const errors = [];
+
+  if (!payload.projectName) errors.push('Project name is required.');
+  if (!payload.description) errors.push('Project description is required.');
+  if (!payload.problemStatement) errors.push('Problem statement is required.');
+  if (!payload.projectType) errors.push('Project type is required.');
+  if (!payload.timeline) errors.push('Timeline is required.');
+  if (!payload.budgetExpectation) errors.push('Budget expectation is required.');
+  if (!payload.name) errors.push('Name is required.');
+  if (!payload.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+    errors.push('A valid email address is required.');
+  }
+
+  if (payload.website && !/^https?:\/\//i.test(payload.website)) {
+    errors.push('Website must start with http:// or https://');
+  }
+
+  return errors;
+}
+
 export async function POST(request) {
   try {
-    const formData = await request.json();
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    if (isRateLimited(ip)) {
+      return Response.json({
+        success: false,
+        error: 'Too many requests. Please wait a minute and try again.'
+      }, { status: 429 });
+    }
+
+    const rawPayload = await request.json();
+    const formData = normalizeInquiryPayload(rawPayload || {});
+    const validationErrors = validateInquiryPayload(formData);
+    if (validationErrors.length > 0) {
+      return Response.json({
+        success: false,
+        error: validationErrors[0]
+      }, { status: 400 });
+    }
 
     // Generate estimate
     const estimate = estimateProjectScope(formData);
