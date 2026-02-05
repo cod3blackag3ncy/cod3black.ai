@@ -69,6 +69,8 @@ const services = [
 ];
 
 export default function Home() {
+  // Combined deployment: cod3black-ai (production AI) + c3bai (SaaS agency)
+  // Updated: 2026-02-04 - unified positioning
   return (
     <>
       {/* Navigation */}
