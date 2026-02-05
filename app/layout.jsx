@@ -2,8 +2,8 @@ import './globals.css';
 import PWAInstall from './pwa-install';
 
 export const metadata = {
-  title: 'Cod3Black Agency - Web Design, Apps, Software',
-  description: 'Custom web design, mobile apps, and software development. $125/hour transparent pricing. See our work in Beltline Golf, TradeAlerts, Gratog, and more.',
+  title: 'Cod3Black - Production Systems: Web, AI, Apps, Software',
+  description: 'We build production systems. Not marketing platforms. Not toy demos. Custom web, AI automation, mobile apps, SaaS platforms. Real latency. Real costs. Real reliability. $125/hour transparent pricing.',
   viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
   manifest: '/manifest.json',
   appleWebApp: {
