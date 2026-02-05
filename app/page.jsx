@@ -73,6 +73,11 @@ export default function Home() {
   // Updated: 2026-02-04 - unified positioning
   return (
     <>
+      {/* Skip Navigation Link */}
+      <a href="#main" className="sr-only focus:not-sr-only fixed top-0 left-0 z-50 px-4 py-2 bg-blue-600 text-white rounded-br">
+        Skip to main content
+      </a>
+
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
@@ -91,7 +96,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="min-h-screen">
+      <main id="main" className="min-h-screen">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-900 text-white pt-20 pb-32 px-4 sm:px-6">
           {/* Background decoration */}
@@ -106,7 +111,7 @@ export default function Home() {
             </div>
             
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-              We Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">Production Systems</span>
+              We Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-cyan-100 font-extrabold drop-shadow-lg">Production Systems</span>
             </h1>
             
             <p className="text-lg sm:text-xl mb-4 text-blue-100 max-w-3xl mx-auto leading-relaxed font-semibold">

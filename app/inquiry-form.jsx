@@ -139,7 +139,7 @@ const InquiryForm = () => {
   return (
     <div className="max-w-2xl mx-auto p-6">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Project Inquiry</h1>
+        <h2 className="text-3xl font-bold mb-2">Project Inquiry</h2>
         <p className="text-gray-600 mb-4">
           Help us understand your project so we can give you an accurate estimate.
           This takes about 10 minutes.
