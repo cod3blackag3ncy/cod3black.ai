@@ -5,7 +5,6 @@ export const metadata = {
   charset: 'utf-8',
   title: 'Cod3Black - Production Systems: Web, AI, Apps, Software',
   description: 'We build production systems. Not marketing platforms. Not toy demos. Custom web, AI automation, mobile apps, SaaS platforms. Real latency. Real costs. Real reliability. $125/hour transparent pricing.',
-  viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
@@ -50,6 +49,12 @@ export const metadata = {
     images: ['/twitter-card.png']
   },
   metadataBase: new URL('https://c3bai.vercel.app')
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
 };
 
 export default function RootLayout({ children }) {
