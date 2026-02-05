@@ -8,22 +8,26 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:render": "node scripts/test-renderer.js",
+    "test:accessibility": "node scripts/test-accessibility.js",
+    "test:performance": "node scripts/test-performance.js"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "lucide-react": "^0.344.0",
     "next": "^15.0.0",
-    "lucide-react": "^0.344.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.0",
-    "postcss": "^8.4.0",
-    "autoprefixer": "^10.4.0",
-    "@types/react": "^18.3.0",
     "@types/node": "^20.0.0",
-    "typescript": "^5.0.0",
+    "@types/react": "^18.3.0",
+    "autoprefixer": "^10.4.0",
     "eslint": "^8.0.0",
-    "eslint-config-next": "^15.0.0"
+    "eslint-config-next": "^15.0.0",
+    "jsdom": "^28.0.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.0.0"
   }
 }
