@@ -4,11 +4,58 @@
  * Estimates scope and pricing for web design, apps, software, and custom projects
  */
 
+import { NextRequest } from 'next/server';
+
+interface RateLimitEntry {
+  count: number;
+  resetAt: number;
+}
+
+interface InquiryPayload {
+  projectName: string;
+  description: string;
+  problemStatement: string;
+  projectType: string;
+  designScope: string;
+  integrationCount: string;
+  databaseNeeded: string;
+  integrationTypes: string[];
+  deploymentRequirements: string[];
+  timeline: string;
+  budgetExpectation: string;
+  techStack: string;
+  existingCode: string;
+  teamLevel: string;
+  specialRequirements: string[];
+  name: string;
+  email: string;
+  company: string;
+  website: string;
+  contactMethod: string;
+  additionalInfo: string;
+  partnerQualification: string;
+  partnerDetails: string;
+}
+
+interface Estimate {
+  estimatedHours: number;
+  tier: string;
+  complexity: string;
+  hourlyRate: number;
+  isPartnerQualified: boolean;
+  monthlyRate: number;
+  hoursPerMonth: number;
+  setupFee: number;
+  estimatedDuration: string;
+  disclaimer: string;
+  partnerSavings: number | null;
+}
+
 const RATE_LIMIT_WINDOW_MS = 60 * 1000;
 const RATE_LIMIT_MAX = 5;
-const rateLimitStore = new Map();
+const rateLimitStore = new Map<string, RateLimitEntry>();
 
-function isRateLimited(ip) {
+function isRateLimited(ip: string): boolean {
   const now = Date.now();
   const entry = rateLimitStore.get(ip);
   if (!entry || entry.resetAt <= now) {
@@ -24,17 +71,17 @@ function isRateLimited(ip) {
   return false;
 }
 
-function sanitizeInput(value) {
+function sanitizeInput(value: unknown): string {
   if (typeof value !== 'string') return '';
   return value.trim().replace(/[<>]/g, '');
 }
 
-function sanitizeArray(values) {
+function sanitizeArray(values: unknown): string[] {
   if (!Array.isArray(values)) return [];
   return values.map((value) => sanitizeInput(value)).filter(Boolean);
 }
 
-function normalizeInquiryPayload(payload) {
+function normalizeInquiryPayload(payload: Partial<InquiryPayload>): InquiryPayload {
   return {
     projectName: sanitizeInput(payload.projectName),
     description: sanitizeInput(payload.description),
@@ -62,8 +109,8 @@ function normalizeInquiryPayload(payload) {
   };
 }
 
-function validateInquiryPayload(payload) {
-  const errors = [];
+function validateInquiryPayload(payload: InquiryPayload): string[] {
+  const errors: string[] = [];
 
   if (!payload.projectName) errors.push('Project name is required.');
   if (!payload.description) errors.push('Project description is required.');
@@ -83,7 +130,7 @@ function validateInquiryPayload(payload) {
   return errors;
 }
 
-export async function POST(request) {
+export async function POST(request: NextRequest) {
   try {
     const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
     if (isRateLimited(ip)) {
@@ -145,7 +192,7 @@ export async function POST(request) {
  * Estimate project scope based on form responses
  * Works for: websites, web apps, mobile apps, integrations, redesigns, MVPs
  */
-function estimateProjectScope(data) {
+function estimateProjectScope(data: InquiryPayload): Estimate {
   let estimatedHours = 20; // baseline
   let tier = 'Starter';
   let complexity = 'simple';
@@ -208,7 +255,7 @@ function estimateProjectScope(data) {
   if (estimatedHours > 250) estimatedHours = 250;
 
   // Check partner qualification for discount
-  const isPartnerQualified = data.partnerQualification && data.partnerQualification !== 'none';
+  const isPartnerQualified: boolean = Boolean(data.partnerQualification && data.partnerQualification !== 'none');
   if (isPartnerQualified) {
     hourlyRate = 65; // Partner rate
   }

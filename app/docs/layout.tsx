@@ -1,10 +1,11 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Documentation - Cod3Black Agency',
 };
 
-export default function DocsLayout({ children }) {
+export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-white">
       <nav className="sticky top-0 bg-white border-b border-gray-200 z-40">

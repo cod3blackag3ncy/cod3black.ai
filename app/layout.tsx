@@ -1,8 +1,8 @@
 import './globals.css';
+import type { Metadata, Viewport } from 'next';
 import PWAInstall from './pwa-install';
 
-export const metadata = {
-  charset: 'utf-8',
+export const metadata: Metadata = {
   title: 'Cod3Black - Production Systems: Web, AI, Apps, Software',
   description: 'We build production systems. Not marketing platforms. Not toy demos. Custom web, AI automation, mobile apps, SaaS platforms. Real latency. Real costs. Real reliability. $125/hour transparent pricing.',
   manifest: '/manifest.json',
@@ -51,13 +51,13 @@ export const metadata = {
   metadataBase: new URL('https://c3bai.vercel.app')
 };
 
-export const viewport = {
+export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>

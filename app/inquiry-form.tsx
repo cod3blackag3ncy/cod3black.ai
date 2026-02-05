@@ -13,15 +13,41 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { CheckCircle, AlertCircle, ArrowRight } from 'lucide-react';
 
-const InquiryForm = () => {
-  const [section, setSection] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [submitError, setSubmitError] = useState('');
-  const [formData, setFormData] = useState({
+interface FormData {
+  projectName: string;
+  description: string;
+  problemStatement: string;
+  projectType: string;
+  designScope: string;
+  integrationCount: string;
+  databaseNeeded: string;
+  integrationTypes: string[];
+  deploymentRequirements: string[];
+  timeline: string;
+  budgetExpectation: string;
+  techStack: string;
+  existingCode: string;
+  teamLevel: string;
+  specialRequirements: string[];
+  name: string;
+  email: string;
+  company: string;
+  website: string;
+  contactMethod: string;
+  additionalInfo: string;
+  partnerQualification: string;
+  partnerDetails: string;
+}
+
+const InquiryForm = (): React.ReactElement => {
+  const [section, setSection] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [submitError, setSubmitError] = useState<string>('');
+  const [formData, setFormData] = useState<FormData>({
     // Section 1: Basics
     projectName: '',
     description: '',
@@ -58,7 +84,7 @@ const InquiryForm = () => {
     partnerDetails: '',
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -66,7 +92,7 @@ const InquiryForm = () => {
     }));
   };
 
-  const handleCheckboxChange = (e, fieldName) => {
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>, fieldName: 'integrationTypes' | 'deploymentRequirements' | 'specialRequirements') => {
     const { value, checked } = e.target;
     setFormData(prev => {
       const currentArray = prev[fieldName] || [];
@@ -74,12 +100,12 @@ const InquiryForm = () => {
         ...prev,
         [fieldName]: checked
           ? [...currentArray, value]
-          : currentArray.filter(item => item !== value)
+          : currentArray.filter((item: string) => item !== value)
       };
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setSubmitError('');

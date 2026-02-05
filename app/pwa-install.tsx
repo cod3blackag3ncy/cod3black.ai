@@ -3,15 +3,20 @@
 import { useEffect, useState } from 'react';
 import { X, Download } from 'lucide-react';
 
-export default function PWAInstall() {
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
-  const [showPrompt, setShowPrompt] = useState(false);
-  const [isInstalled, setIsInstalled] = useState(false);
-  const [canInstall, setCanInstall] = useState(false);
+interface BeforeInstallPromptEvent extends Event {
+  prompt(): Promise<void>;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+}
+
+export default function PWAInstall(): React.ReactElement | null {
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [showPrompt, setShowPrompt] = useState<boolean>(false);
+  const [isInstalled, setIsInstalled] = useState<boolean>(false);
+  const [canInstall, setCanInstall] = useState<boolean>(false);
 
   useEffect(() => {
-    // Check if app is already installed
-    if (window.navigator.standalone === true) {
+    // Check if app is already installed (iOS Safari)
+    if ((window.navigator as Navigator & { standalone?: boolean }).standalone === true) {
       setIsInstalled(true);
       return;
     }
@@ -29,9 +34,9 @@ export default function PWAInstall() {
     }
 
     // Listen for install prompt
-    const handleBeforeInstallPrompt = (e) => {
+    const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
-      setDeferredPrompt(e);
+      setDeferredPrompt(e as BeforeInstallPromptEvent);
       setShowPrompt(true);
       setCanInstall(true);
     };
