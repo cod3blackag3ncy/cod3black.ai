@@ -100,19 +100,19 @@ export default function Home() {
           
           <div className="relative max-w-5xl mx-auto text-center">
             <div className="inline-block mb-6 px-4 py-2 bg-blue-500 bg-opacity-30 border border-blue-300 rounded-full text-sm font-semibold">
-              ⚡ We Build Production Systems
+              ⚡ Production-Grade Engineering
             </div>
             
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-              Custom Web, Mobile, AI & Software
+              We Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">Production Systems</span>
             </h1>
             
             <p className="text-lg sm:text-xl mb-4 text-blue-100 max-w-3xl mx-auto leading-relaxed font-semibold">
-              Not marketing platforms. Not toy demos. Systems that consume real compute, handle real constraints, and solve real problems at scale.
+              Not marketing platforms. Not toy demos. Not filler. Systems that consume real compute, handle real constraints, and solve real problems at scale.
             </p>
             
             <p className="text-lg sm:text-lg mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              We build production-grade applications for web, mobile, AI automation, and custom integrations. You're buying experienced engineering hours at fair, transparent rates.
+              Custom web design, mobile apps, AI automation, integrations, and SaaS platforms. We think in tokens, costs, latency, and reliability. You're buying experienced engineering hours at fair, transparent rates.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
@@ -171,43 +171,94 @@ export default function Home() {
           </div>
         </section>
 
-        {/* AI Capabilities Section */}
+        {/* Production Patterns Section */}
         <section className="py-24 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Why Choose Cod3Black</h2>
+              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">How We Build Production Systems</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                We don't just build websites. We build production systems that work at scale.
+                Not theories. Not tutorials. Real patterns from real systems handling real constraints.
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
-                <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <Gauge size={24} className="text-blue-600" /> Real Latency Awareness
+                <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                  <Zap size={24} className="text-yellow-600" /> LLM Inference & Cost Tracking
                 </h3>
-                <p className="text-gray-600">We think in tokens, costs, rate limits, and actual compute constraints. Every API call is measurable.</p>
+                <p className="text-sm text-gray-500 mb-3">Provider-agnostic SDKs, structured outputs, token counting</p>
+                <p className="text-gray-600">Call GPT-4, Claude, Gemini through a unified interface. Real API calls, real latency tracking, real cost awareness.</p>
               </div>
               
               <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
-                <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <Check size={24} className="text-green-600" /> Production Error Handling
+                <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                  <Gauge size={24} className="text-blue-600" /> Error Handling & Reliability
                 </h3>
-                <p className="text-gray-600">Deterministic outputs where they matter. Graceful fallbacks. Retry logic. Monitoring that actually works.</p>
+                <p className="text-sm text-gray-500 mb-3">API validation, schema validation, retry logic, monitoring</p>
+                <p className="text-gray-600">Deterministic outputs where they matter. Exponential backoff. Graceful degradation. Every failure is logged.</p>
               </div>
               
               <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
-                <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <Zap size={24} className="text-yellow-600" /> AI Integration Expertise
+                <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                  <Check size={24} className="text-green-600" /> Structured Outputs & Validation
                 </h3>
-                <p className="text-gray-600">LLM inference, structured outputs with Zod validation, multi-provider support (OpenAI, Anthropic, Google, custom).</p>
+                <p className="text-sm text-gray-500 mb-3">Zod schemas, runtime validation, type safety</p>
+                <p className="text-gray-600">Not just text. Schema-compliant JSON with validated fields. AI hallucinations are caught before production.</p>
               </div>
               
               <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
-                <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <Users size={24} className="text-purple-600" /> Transparent Pricing
+                <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                  <Users size={24} className="text-purple-600" /> Scalable & Transparent
                 </h3>
-                <p className="text-gray-600">$125/hour base rate. No hidden fees. Per-hour billing. Partner rates available for referrals and long-term relationships.</p>
+                <p className="text-sm text-gray-500 mb-3">Serverless deployment, cost per inference, fair pricing</p>
+                <p className="text-gray-600">Auto-scaling infrastructure. $125/hour base rate. No hidden fees. Partner rates for ongoing relationships.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Reality Check Section */}
+        <section className="py-24 px-4 sm:px-6 bg-white border-y border-gray-200">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">The Reality Check</h2>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-12 max-w-3xl mx-auto">
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl">✓</div>
+                  <div>
+                    <h4 className="font-bold text-gray-900">We don't hide latency</h4>
+                    <p className="text-gray-600 text-sm">Every API call shows real response times. If it takes 2 seconds, you see 2 seconds.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl">✓</div>
+                  <div>
+                    <h4 className="font-bold text-gray-900">We think in tokens and costs</h4>
+                    <p className="text-gray-600 text-sm">GPT-4: expensive. Claude: cheaper. Gemini: different trade-offs. We pick the right tool.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl">✓</div>
+                  <div>
+                    <h4 className="font-bold text-gray-900">Deterministic when it matters</h4>
+                    <p className="text-gray-600 text-sm">Regulatory docs need consistency. Generate images? Sampling is fine. Context matters.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="text-2xl">✓</div>
+                  <div>
+                    <h4 className="font-bold text-gray-900">Production means error handling</h4>
+                    <p className="text-gray-600 text-sm">Retries. Rate limit backoff. Graceful degradation. Monitoring. It's not fancy, but it works.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
