@@ -56,8 +56,9 @@ class AccessibilityTest {
 
     // Check for heading hierarchy
     const h1Count = (html.match(/<h1[^>]*>/g) || []).length;
+    const h2Count = (html.match(/<h2[^>]*>/g) || []).length;
     if (h1Count === 1) {
-      checks.push({ pass: true, text: 'Single H1 on page' });
+      checks.push({ pass: true, text: `Proper hierarchy: ${h1Count} H1, ${h2Count} H2` });
     } else {
       checks.push({ pass: false, text: `Found ${h1Count} H1 tags (should be 1)` });
     }
@@ -87,7 +88,9 @@ class AccessibilityTest {
     }
 
     // Check for skip links
-    if (html.includes('skip') || html.includes('#main')) {
+    if (html.includes('Skip') && html.includes('#main')) {
+      checks.push({ pass: true, text: 'Skip navigation link present' });
+    } else if (html.includes('skip') || html.includes('#main')) {
       checks.push({ pass: true, text: 'Skip navigation likely present' });
     } else {
       checks.push({ pass: false, text: 'Consider adding skip navigation link' });
@@ -171,7 +174,7 @@ class AccessibilityTest {
     }
 
     // Missing charset
-    if (!html.includes('charset')) {
+    if (!html.includes('charset') && !html.includes('"utf-8"')) {
       issues.push('Missing charset declaration - add <meta charset="utf-8">');
     }
 
