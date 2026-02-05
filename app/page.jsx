@@ -39,22 +39,32 @@ const services = [
   {
     icon: '🎨',
     title: 'Web Design & Development',
-    description: 'Marketing sites, portfolios, SaaS dashboards, and custom web applications.',
+    description: 'Marketing sites, portfolios, SaaS dashboards, and custom web applications. React, Next.js, TypeScript.',
   },
   {
     icon: '📱',
     title: 'Mobile Apps',
-    description: 'iOS & Android apps, cross-platform development, and app store launches.',
+    description: 'iOS & Android apps, React Native, cross-platform development, and app store launches.',
+  },
+  {
+    icon: '🤖',
+    title: 'AI & Automation',
+    description: 'LLM inference (GPT-4, Claude, Gemini), document processing, structured outputs, automation workflows.',
   },
   {
     icon: '⚙️',
     title: 'Integrations & APIs',
-    description: 'Connect systems, third-party APIs, webhooks, and data pipelines.',
+    description: 'Connect systems, third-party APIs, webhooks, data pipelines, real-time communication.',
+  },
+  {
+    icon: '📊',
+    title: 'Dashboards & Analytics',
+    description: 'Real-time dashboards, business intelligence, data visualization, and reporting systems.',
   },
   {
     icon: '🚀',
-    title: 'MVPs & Redesigns',
-    description: 'Proof of concepts, existing site improvements, and tech modernization.',
+    title: 'MVPs & Modernization',
+    description: 'Proof of concepts, existing site improvements, legacy system modernization, performance optimization.',
   },
 ];
 
@@ -90,15 +100,19 @@ export default function Home() {
           
           <div className="relative max-w-5xl mx-auto text-center">
             <div className="inline-block mb-6 px-4 py-2 bg-blue-500 bg-opacity-30 border border-blue-300 rounded-full text-sm font-semibold">
-              ✨ Production-Grade Software [BUILD 60bd1c9]
+              ⚡ We Build Production Systems
             </div>
             
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-              Custom Web Design, Apps & Software
+              Custom Web, Mobile, AI & Software
             </h1>
             
-            <p className="text-lg sm:text-xl mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              You're not buying API access or templates. You're buying experienced engineering hours at fair, transparent rates. We build production-grade applications that solve real problems and deliver real results.
+            <p className="text-lg sm:text-xl mb-4 text-blue-100 max-w-3xl mx-auto leading-relaxed font-semibold">
+              Not marketing platforms. Not toy demos. Systems that consume real compute, handle real constraints, and solve real problems at scale.
+            </p>
+            
+            <p className="text-lg sm:text-lg mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed">
+              We build production-grade applications for web, mobile, AI automation, and custom integrations. You're buying experienced engineering hours at fair, transparent rates.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
@@ -157,15 +171,57 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Projects Section */}
-        <section id="projects" className="py-24 px-4 sm:px-6 bg-white">
+        {/* AI Capabilities Section */}
+        <section className="py-24 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Real Projects We've Shipped</h2>
+              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Why Choose Cod3Black</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Projects with real problems, real solutions, and real results. Click to see them live.
+                We don't just build websites. We build production systems that work at scale.
               </p>
             </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                  <Gauge size={24} className="text-blue-600" /> Real Latency Awareness
+                </h3>
+                <p className="text-gray-600">We think in tokens, costs, rate limits, and actual compute constraints. Every API call is measurable.</p>
+              </div>
+              
+              <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                  <Check size={24} className="text-green-600" /> Production Error Handling
+                </h3>
+                <p className="text-gray-600">Deterministic outputs where they matter. Graceful fallbacks. Retry logic. Monitoring that actually works.</p>
+              </div>
+              
+              <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                  <Zap size={24} className="text-yellow-600" /> AI Integration Expertise
+                </h3>
+                <p className="text-gray-600">LLM inference, structured outputs with Zod validation, multi-provider support (OpenAI, Anthropic, Google, custom).</p>
+              </div>
+              
+              <div className="bg-white border-l-4 border-blue-600 rounded-lg p-8 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                  <Users size={24} className="text-purple-600" /> Transparent Pricing
+                </h3>
+                <p className="text-gray-600">$125/hour base rate. No hidden fees. Per-hour billing. Partner rates available for referrals and long-term relationships.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="py-24 px-4 sm:px-6 bg-white">
+           <div className="max-w-5xl mx-auto">
+             <div className="text-center mb-16">
+               <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Real Projects We've Shipped</h2>
+               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                 Projects with real problems, real solutions, and real results. Click to see them live.
+               </p>
+             </div>
             
             <div className="grid md:grid-cols-2 gap-8 mb-12">
               {projects.map((project, idx) => (
@@ -323,8 +379,9 @@ export default function Home() {
             </div>
             
             <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-              <p>© 2026 Cod3Black Agency. All rights reserved. Built for production.</p>
-            </div>
+               <p>© 2026 Cod3Black Agency. We build production systems. Not marketing platforms. Not toy demos.</p>
+               <p className="mt-2 text-xs">Custom web, mobile, AI, and software development. $125/hour transparent pricing.</p>
+             </div>
           </div>
         </footer>
       </main>
