@@ -7,31 +7,35 @@ import InquiryForm from './inquiry-form';
 const projects = [
   {
     name: 'Beltline Golf',
-    description: 'Golf booking system with online payments, leaderboard, and digital waivers.',
-    stats: ['~80 hours', '8 weeks', 'Booking + Payments'],
+    description: 'Full booking system with payments, live leaderboard, digital waivers, and admin dashboard. Complex multi-feature app delivered in 2 months.',
+    stats: ['⚡ 124 hours of work', '📅 Live in 8 weeks', '🎯 Full-stack: booking + payments + admin'],
+    highlights: 'Complex booking + payments + dashboard',
     url: 'https://beltlinegolf.com',
-    tags: ['React', 'Stripe', 'Dashboard'],
+    tags: ['Next.js', 'Payments', 'Dashboard'],
   },
   {
     name: 'TradeAlerts',
-    description: 'Trading app with real-time alerts, PWA support, and fast performance.',
-    stats: ['~60 hours', '3 weeks', 'PWA + Mobile'],
+    description: 'Real-time trading alerts with push notifications and mobile-first PWA. 5 critical fixes shipped same-day.',
+    stats: ['⚡ 13 hours of work', '📅 Live in 1 week', '🎯 PWA + Real-time + TypeScript strict'],
+    highlights: 'Real-time alerts + PWA + Mobile',
     url: 'https://ktradealerts.vercel.app',
-    tags: ['React', 'PWA', 'TypeScript'],
+    tags: ['React Native', 'PWA', 'TypeScript'],
   },
   {
     name: 'Taste of Gratitude',
-    description: 'Food ordering with online payments and local delivery tracking.',
-    stats: ['~40 hours', '2 weeks', 'E-commerce'],
+    description: 'E-commerce food ordering with cart, checkout, delivery zones, and secure transactions. Production-grade quality.',
+    stats: ['⚡ 80 hours of work', '📅 Live in 10 weeks', '🎯 E-commerce + ACID transactions'],
+    highlights: 'E-commerce + Payments + Delivery',
     url: 'https://tasteofgratitude.shop',
-    tags: ['Next.js', 'Payments', 'Mobile'],
+    tags: ['Next.js', 'Payments', 'Security'],
   },
   {
     name: 'Image-to-SVG',
-    description: 'Batch image converter that turns photos into scalable vector graphics.',
-    stats: ['~20 hours', '1 week', 'Automation'],
+    description: 'Drag-and-drop image converter with live preview and instant downloads. Simple tool, shipped fast.',
+    stats: ['⚡ 26 hours of work', '📅 Live in 2 weeks', '🎯 API + React UI + Processing'],
+    highlights: 'Automation + Processing Tool',
     url: 'https://img-to-svg.vercel.app',
-    tags: ['React', 'Processing', 'Tool'],
+    tags: ['Next.js', 'API', 'Tool'],
   },
 ];
 
@@ -278,9 +282,12 @@ export default function Home() {
         <section id="projects" className="py-24 px-4 sm:px-6 bg-white">
            <div className="max-w-5xl mx-auto">
               <div className="text-center mb-16">
-                <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Real Projects We&apos;ve Shipped</h2>
+                <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Real Projects. Real Speed.</h2>
                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                 Projects with real problems, real solutions, and real results. Click to see them live.
+                 Production-quality apps shipped fast. TradeAlerts: 13 hours. Image-to-SVG: 26 hours. Click to see them live.
+               </p>
+               <p className="text-md text-blue-600 font-semibold mt-3">
+                 ⚡ From idea to production in 1-10 weeks depending on complexity
                </p>
              </div>
             
