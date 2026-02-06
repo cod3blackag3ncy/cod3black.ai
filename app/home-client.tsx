@@ -324,8 +324,8 @@ export default function HomeClient() {
                   <Check size={20} className="text-indigo-600" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900">You Own Everything</h4>
-                  <p className="text-sm text-gray-600">Code, accounts, infrastructure. Full handoff, no lock-in.</p>
+                  <h4 className="font-bold text-gray-900">Full License &amp; Access</h4>
+                  <p className="text-sm text-gray-600">Complete access to your codebase, accounts, and infrastructure. No lock-in.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4 bg-white p-5 rounded-xl border border-gray-200">
