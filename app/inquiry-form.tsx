@@ -40,6 +40,9 @@ interface FormData {
   additionalInfo: string;
   partnerQualification: string;
   partnerDetails: string;
+  // Honeypot fields (hidden, should remain empty)
+  website2: string;
+  phone2: string;
 }
 
 const InquiryForm = (): React.ReactElement => {
@@ -82,6 +85,10 @@ const InquiryForm = (): React.ReactElement => {
     // Section 6: Partner Qualification
     partnerQualification: '',
     partnerDetails: '',
+    
+    // Honeypot fields (hidden, must stay empty)
+    website2: '',
+    phone2: '',
   });
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -725,6 +732,30 @@ const InquiryForm = (): React.ReactElement => {
             </div>
           </div>
         )}
+
+        {/* Honeypot fields - hidden from humans, bots will fill these */}
+        <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }}>
+          <label htmlFor="website2">Leave this empty</label>
+          <input
+            type="text"
+            id="website2"
+            name="website2"
+            value={formData.website2}
+            onChange={handleInputChange}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+          <label htmlFor="phone2">Do not fill this</label>
+          <input
+            type="text"
+            id="phone2"
+            name="phone2"
+            value={formData.phone2}
+            onChange={handleInputChange}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
 
         {/* Navigation Buttons */}
         {submitError && (

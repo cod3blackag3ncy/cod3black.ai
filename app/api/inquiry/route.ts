@@ -10,11 +10,7 @@
 
 import { NextRequest } from 'next/server';
 import { Resend } from 'resend';
-
-interface RateLimitEntry {
-  count: number;
-  resetAt: number;
-}
+import { checkRateLimit } from '@/lib/rate-limit';
 
 interface InquiryPayload {
   projectName: string;
@@ -56,28 +52,8 @@ interface Estimate {
   partnerSavings: number | null;
 }
 
-const RATE_LIMIT_WINDOW_MS = 60 * 1000;
-const RATE_LIMIT_MAX = 5;
-const rateLimitStore = new Map<string, RateLimitEntry>();
-
 function getResend() {
   return new Resend(process.env.RESEND_API_KEY || '');
-}
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitStore.get(ip);
-  if (!entry || entry.resetAt <= now) {
-    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
-    return false;
-  }
-
-  if (entry.count >= RATE_LIMIT_MAX) {
-    return true;
-  }
-
-  entry.count += 1;
-  return false;
 }
 
 function sanitizeInput(value: unknown): string {
@@ -88,6 +64,26 @@ function sanitizeInput(value: unknown): string {
 function sanitizeArray(values: unknown): string[] {
   if (!Array.isArray(values)) return [];
   return values.map((value) => sanitizeInput(value)).filter(Boolean);
+}
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function sanitizeUrl(url: string): string {
+  if (!url) return '';
+  try {
+    const parsed = new URL(url);
+    if (!['http:', 'https:'].includes(parsed.protocol)) return '';
+    return parsed.href;
+  } catch {
+    return '';
+  }
 }
 
 function normalizeInquiryPayload(payload: Partial<InquiryPayload>): InquiryPayload {
@@ -762,8 +758,24 @@ ${formData.description}
 
 export async function POST(request: NextRequest) {
   try {
+    // Origin validation (CSRF protection)
+    const origin = request.headers.get('origin');
+    const allowedOrigins = [
+      'https://c3bai.vercel.app',
+      'https://www.c3bai.vercel.app',
+      'http://localhost:3000'
+    ];
+    if (origin && !allowedOrigins.some(allowed => origin.startsWith(allowed.replace('www.', '')))) {
+      return Response.json({
+        success: false,
+        error: 'Invalid request origin.'
+      }, { status: 403 });
+    }
+
+    // Rate limiting (uses Upstash Redis in production, in-memory fallback for dev)
     const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
-    if (isRateLimited(ip)) {
+    const rateLimitResult = await checkRateLimit(ip);
+    if (!rateLimitResult.success) {
       return Response.json({
         success: false,
         error: 'Too many requests. Please wait a minute and try again.'
@@ -771,6 +783,16 @@ export async function POST(request: NextRequest) {
     }
 
     const rawPayload = await request.json();
+    
+    // Honeypot check (hidden field that bots fill)
+    if (rawPayload.website2 || rawPayload.phone2) {
+      // Silent success for bots - don't reveal detection
+      return Response.json({
+        success: true,
+        inquiryId: 'inq_' + Date.now(),
+        message: 'Inquiry submitted.'
+      }, { status: 200 });
+    }
     const formData = normalizeInquiryPayload(rawPayload || {});
     const validationErrors = validateInquiryPayload(formData);
     if (validationErrors.length > 0) {

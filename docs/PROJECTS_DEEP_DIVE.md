@@ -16,8 +16,8 @@ A local golf simulator facility needed to:
 ### The Solution
 **Type:** Web app + Admin dashboard  
 **Tech Stack:** React, Node.js, Stripe API, Firebase  
-**Timeline:** 8 weeks  
-**Investment:** ~$10K (80 hours @ $125/hour)
+**Timeline:** 12 weeks  
+**Investment:** ~$15.5K (124 hours @ $125/hour)
 
 **What we built:**
 
@@ -159,72 +159,75 @@ A trader had a React Native app with:
 
 ---
 
-## 3. Taste of Gratitude - Food Ordering System
+## 3. Taste of Gratitude - Food Ordering & Menu System
 
 ### The Problem
-A team needed a lightweight project management tool with:
-- Task boards (similar to Trello)
-- Real-time collaboration
-- Team dashboards
-- Progress tracking
+A local restaurant/food business needed to:
+- Display their menu online with beautiful photos
+- Accept food orders for pickup/delivery
+- Manage daily specials and availability
+- Track customer orders and preferences
 
-**Before:** Team used spreadsheets and email threads. Hard to track progress. People didn't update status.
+**Before:** Phone orders only. Menu was a PDF that was hard to update. Customers didn't know what was available.
 
 ### The Solution
-**Type:** Full-stack web app  
-**Tech Stack:** React, Node.js, PostgreSQL, WebSockets, Docker  
-**Timeline:** 12 weeks  
-**Investment:** ~$15K (120 hours @ $125/hour)
+**Type:** Web app + Admin dashboard  
+**Tech Stack:** React, Node.js, Vercel, Resend  
+**Timeline:** 10 weeks  
+**Investment:** ~$10K (80 hours @ $125/hour)
 
 **What we built:**
 
-1. **Task Board**
-   - Kanban-style columns (To Do, In Progress, Done)
-   - Drag-and-drop tasks
-   - Add descriptions, due dates, assignees
+1. **Digital Menu**
+   - Beautiful photo grid of dishes
+   - Categories (appetizers, mains, desserts, drinks)
+   - Daily specials with "NEW" badges
+   - Dietary filters (vegetarian, gluten-free, etc.)
 
-2. **Real-Time Collaboration**
-   - WebSocket for live updates (see team changes instantly)
-   - Activity feed
-   - Comments on tasks
+2. **Online Ordering**
+   - Add to cart functionality
+   - Pickup time selection
+   - Special instructions per item
+   - Order confirmation emails
 
-3. **Dashboard**
-   - Team overview (who's working on what)
-   - Progress metrics (% complete, on-time rate)
-   - Burndown charts (agile teams)
+3. **Admin Dashboard**
+   - Add/edit menu items with photos
+   - Mark items as sold out
+   - View incoming orders
+   - Update prices and descriptions
 
-4. **Notifications**
-   - Task assigned to you
-   - Task due soon
-   - Someone commented on your task
+4. **Customer Features**
+   - Order history
+   - Favorite items
+   - Reorder previous orders
 
 ### The Results
-- **Adoption**: 90% of team uses daily (was 40% with spreadsheets)
-- **Productivity**: Reduced status-checking meetings by 80%
-- **Visibility**: Can see what everyone's working on
-- **On-time**: 95% of tasks delivered on deadline (was 70%)
+- **Orders**: 40% of orders now come through website (was 0%)
+- **Revenue**: Increased average order size by 25% (photos sell food)
+- **Time saved**: Staff spends 50% less time on phone
+- **Accuracy**: Order mistakes reduced by 80% (customers enter their own orders)
 
 ### Key Lessons
-1. **Real-time collaboration > manual updates**
-2. **Notifications work** - Only notify about relevant things
-3. **Mobile matters** - 30% of updates come from mobile
-4. **Simpler is better** - We left out time tracking (they didn't want it)
+1. **Photos matter** - Menu items with photos sell 3x more
+2. **Mobile first** - 85% of food orders come from phones
+3. **Keep it simple** - Customers want to order in under 2 minutes
+4. **Availability is key** - Real-time sold-out status prevents frustration
 
 ### What Worked Well
-✅ Weekly demos with team (instant feedback)  
-✅ Started with MVP (board + tasks only)  
-✅ Added dashboard later (based on feedback)
+✅ Owner was engaged (provided photos, feedback)  
+✅ Started with menu display, added ordering later  
+✅ Mobile-optimized from day one
 
 ### What Was Harder
-❌ Real-time sync is complex (data consistency)  
-❌ Database optimization (queries with 1000+ tasks)  
-❌ Mobile UI (too much info for small screen)
+❌ Photo quality varied (had to coach on photography)  
+❌ Integration with existing POS system  
+❌ Handling rush hour order spikes
 
 ### You Can Apply This To:
-- Team collaboration tools
-- Project tracking
-- Inventory management
-- CRM systems
+- Restaurants and cafes
+- Catering businesses
+- Food trucks
+- Bakeries and specialty food shops
 
 ---
 
@@ -251,7 +254,7 @@ A designer needed to convert hundreds of PNG/JPG images to scalable SVG format.
 **Type:** Web app for batch processing  
 **Tech Stack:** React, Node.js, ImageMagick, AWS  
 **Timeline:** 4 weeks  
-**Investment:** ~$5K (40 hours @ $125/hour)
+**Investment:** ~$3.25K (26 hours @ $125/hour)
 
 **What we built:**
 
@@ -350,37 +353,37 @@ We don't "finish" and leave.
 ### Beltline Golf
 ```
 Scope: Custom booking system + payments + leaderboard + admin dashboard
-Estimate: 80 hours
-Tier: Professional (60 hours/month, would span 1.5 months)
-Pricing: $7,500/month × 1.5 = $11,250
-Actual: $10K (slight discount for relationship)
+Estimate: 124 hours
+Tier: Enterprise (160 hours/month capacity)
+Pricing: 124 hours @ $125/hr = $15,500
+Actual: ~$15.5K
 ```
 
 ### TradeAlerts
 ```
 Scope: TypeScript fixes, PWA compliance, performance, deployment
 Estimate: 13 hours
-Tier: Starter (could fit in 1 month of Starter tier)
-Pricing: $2,500/month × 1 = $2,500
-Actual: $1,625 (emergency rate, rapid sprint)
+Tier: Starter (quick sprint project)
+Pricing: 13 hours @ $125/hr = $1,625
+Actual: $1,625
 ```
 
-### Gratog
+### Taste of Gratitude
 ```
-Scope: Full project management tool, real-time sync, dashboard, notifications
-Estimate: 120 hours
-Tier: Professional/Enterprise (would span 2 months Professional)
-Pricing: $7,500/month × 2 = $15,000
-Actual: $15K
+Scope: Digital menu, online ordering, admin dashboard
+Estimate: 80 hours
+Tier: Professional (60 hours/month, spanning ~1.5 months)
+Pricing: 80 hours @ $125/hr = $10,000
+Actual: $10K
 ```
 
 ### Image-to-SVG
 ```
-Scope: Batch image processing, conversion engine, AWS integration
-Estimate: 40 hours
-Tier: Starter/Professional (fits in 2 weeks Professional tier)
-Pricing: $7,500/month ÷ 4 = $1,875/week ≈ $5K
-Actual: $5K
+Scope: Batch image processing, conversion engine
+Estimate: 26 hours
+Tier: Starter (fits in single sprint)
+Pricing: 26 hours @ $125/hr = $3,250
+Actual: ~$3.25K
 ```
 
 ---
