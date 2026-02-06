@@ -3,7 +3,7 @@
  * Provides offline support, caching, and instant loading
  */
 
-const CACHE_VERSION = 'c3bai-v6';
+const CACHE_VERSION = 'c3bai-v7';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DYNAMIC_CACHE = `${CACHE_VERSION}-dynamic`;
 
@@ -83,7 +83,29 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Cache first for static assets
+  // Network first for HTML/navigation (ensures fresh content)
+  if (request.mode === 'navigate' || request.headers.get('accept')?.includes('text/html')) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response.ok) {
+            const cacheCopy = response.clone();
+            caches.open(DYNAMIC_CACHE).then((cache) => {
+              cache.put(request, cacheCopy);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          return caches.match(request).then((cached) => {
+            return cached || caches.match('/offline');
+          });
+        })
+    );
+    return;
+  }
+
+  // Cache first for static assets (JS, CSS, images)
   event.respondWith(
     caches.match(request).then((response) => {
       if (response) {
@@ -91,7 +113,6 @@ self.addEventListener('fetch', (event) => {
       }
 
       return fetch(request).then((response) => {
-        // Cache successful responses
         if (!response || response.status !== 200 || response.type !== 'basic') {
           return response;
         }
@@ -102,13 +123,7 @@ self.addEventListener('fetch', (event) => {
         });
 
         return response;
-      }).catch(() => {
-        // Return offline page for navigation requests
-        if (request.mode === 'navigate') {
-          return caches.match('/offline');
-        }
-        return null;
-      });
+      }).catch(() => null);
     })
   );
 });
