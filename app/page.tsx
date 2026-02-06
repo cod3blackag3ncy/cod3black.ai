@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ExternalLink, ArrowRight, Check, Zap, Clock, Shield, Eye, Calendar, Phone } from 'lucide-react';
+import { ExternalLink, ArrowRight, Check, Zap, Clock, Shield, Eye, Calendar } from 'lucide-react';
 import InquiryForm from './inquiry-form';
 
 const projects = [
@@ -61,7 +61,7 @@ const faqs = [
   },
   {
     q: 'Do I own everything when we\'re done?',
-    a: 'Yes. You own 100% of the code, accounts, and infrastructure. I hand over all credentials and documentation. No lock-in, no dependencies on me.',
+    a: 'You receive a full license to use, modify, and deploy the code for your business. I retain ownership of the codebase. You get all credentials, documentation, and the ability to hire anyone else to work on it—no lock-in.',
   },
   {
     q: 'Who maintains the app after launch?',
@@ -91,9 +91,7 @@ export default function Home() {
             <a href="#proof" className="text-gray-700 hover:text-blue-600 transition">Speed Proof</a>
             <a href="#projects" className="text-gray-700 hover:text-blue-600 transition">Live Apps</a>
             <a href="#how" className="text-gray-700 hover:text-blue-600 transition">How It Works</a>
-            <a href="tel:+14047899960" className="text-gray-700 hover:text-blue-600 transition flex items-center gap-1">
-              <Phone size={16} /> (404) 789-9960
-            </a>
+
             <a href="#inquiry" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
               Get Estimate
             </a>
@@ -174,8 +172,6 @@ export default function Home() {
 
             <div className="text-center text-sm text-blue-200">
               <span className="inline-flex items-center gap-2">
-                <Phone size={16} /> <a href="tel:+14047899960" className="underline hover:text-white">(404) 789-9960</a>
-                <span className="mx-2">•</span>
                 Reply within 1 business day
               </span>
             </div>
@@ -505,8 +501,8 @@ export default function Home() {
               <a href="#inquiry" className="px-8 py-4 bg-white text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition shadow-lg inline-flex items-center justify-center gap-2">
                 Get Your Build Plan <ArrowRight size={20} />
               </a>
-              <a href="tel:+14047899960" className="px-8 py-4 border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition inline-flex items-center justify-center gap-2">
-                <Phone size={20} /> Call (404) 789-9960
+              <a href="mailto:cod3blackagency@gmail.com" className="px-8 py-4 border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition inline-flex items-center justify-center gap-2">
+                Email Me
               </a>
             </div>
           </div>
@@ -544,7 +540,6 @@ export default function Home() {
               <div>
                 <h5 className="text-white font-semibold mb-4">Contact</h5>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="tel:+14047899960" className="text-blue-400 hover:text-blue-300 transition">(404) 789-9960</a></li>
                   <li><a href="mailto:cod3blackagency@gmail.com" className="text-blue-400 hover:text-blue-300 transition">cod3blackagency@gmail.com</a></li>
                   <li className="text-gray-400">Reply within 1 business day</li>
                 </ul>
