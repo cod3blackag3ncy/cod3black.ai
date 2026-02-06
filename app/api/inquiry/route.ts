@@ -573,7 +573,7 @@ function generateTeamNotificationEmail(formData: InquiryPayload, estimate: Estim
                               <td style="font-size:14px;line-height:22px;color:#475569;">
                                 <strong>Email:</strong> <a href="mailto:${formData.email}" style="color:#2563EB;text-decoration:none;">${formData.email}</a><br>
                                 <strong>Company:</strong> ${formData.company || 'Not provided'}<br>
-                                <strong>Website:</strong> ${formData.website ? `<a href="${formData.website}" style="color:#2563EB;text-decoration:none;">${formData.website}</a>` : 'Not provided'}<br>
+                                <strong>Website:</strong> ${formData.website ? escapeHtml(formData.website) : 'Not provided'}<br>
                                 <strong>Preferred Contact:</strong> ${formData.contactMethod}
                               </td>
                             </tr>
