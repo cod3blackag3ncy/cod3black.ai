@@ -818,27 +818,37 @@ export async function POST(request: NextRequest) {
     });
 
     // Send email notifications via Resend
-    try {
-      const resend = getResend();
-      
+    const resend = getResend();
+    
+    // Send both emails independently so one failure doesn't block the other
+    const [clientEmailResult, teamEmailResult] = await Promise.allSettled([
       // Send branded confirmation email to prospect
-      await resend.emails.send({
+      resend.emails.send({
         from: 'Cod3Black Agency <hello@mail.codewithsolo.com>',
         to: formData.email,
         subject: `Thanks for your inquiry — ${formData.projectName}`,
         html: generateClientEmail(formData, estimate),
-      });
-
+      }),
       // Send detailed notification to team
-      await resend.emails.send({
+      resend.emails.send({
         from: 'Cod3Black System <hello@mail.codewithsolo.com>',
         to: 'cod3blackagency@gmail.com',
         subject: `🔔 New Inquiry: ${formData.projectName} — ${formData.name} (${estimate.isPartnerQualified ? 'F&F' : 'Standard'})`,
         html: generateTeamNotificationEmail(formData, estimate, inquiryId),
-      });
-    } catch (emailError) {
-      console.error('Email sending failed:', emailError);
-      // Don't fail the request if email fails - log and continue
+      }),
+    ]);
+
+    // Log results for debugging
+    if (clientEmailResult.status === 'rejected') {
+      console.error('Client email failed:', clientEmailResult.reason);
+    } else {
+      console.log('Client email sent:', clientEmailResult.value);
+    }
+    
+    if (teamEmailResult.status === 'rejected') {
+      console.error('Team email failed:', teamEmailResult.reason);
+    } else {
+      console.log('Team email sent:', teamEmailResult.value);
     }
 
     return Response.json({
