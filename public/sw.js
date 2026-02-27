@@ -3,7 +3,7 @@
  * Provides offline support, caching, and instant loading
  */
 
-const CACHE_VERSION = 'c3bai-v3';
+const CACHE_VERSION = 'c3bai-v4';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DYNAMIC_CACHE = `${CACHE_VERSION}-dynamic`;
 
@@ -83,7 +83,49 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Cache first for static assets
+  // Network first for navigations so new deployments always load fresh HTML
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.ok) {
+            const cacheCopy = response.clone();
+            caches.open(DYNAMIC_CACHE).then((cache) => {
+              cache.put(request, cacheCopy);
+            });
+          }
+          return response;
+        })
+        .catch(async () => {
+          const cached = await caches.match(request);
+          if (cached) {
+            return cached;
+          }
+          return caches.match('/offline');
+        })
+    );
+    return;
+  }
+
+  // Network first for Next.js build assets to avoid stale CSS/JS after deploys
+  if (url.pathname.startsWith('/_next/static/')) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.ok) {
+            const cacheCopy = response.clone();
+            caches.open(DYNAMIC_CACHE).then((cache) => {
+              cache.put(request, cacheCopy);
+            });
+          }
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+
+  // Cache first for non-critical assets
   event.respondWith(
     caches.match(request).then((response) => {
       if (response) {
